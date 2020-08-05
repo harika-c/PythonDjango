@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends 'base.html'%}
+{% block content %}
+
+<h1> Ocean Page </h1>
+<p> Ocean it is  </p>
+<p>{{ description }},{{ acquatic_animals }}</p>
+<ul>
+    {% for sub_item in acquatic_animals %}
+        {% if sub_item == "sharks" %}
+            <li> {{sub_item}} - Blood Blood </li>
+        {% elif sub_item == 2 %}
+            <li>  {{forloop.counter}} - {{sub_item|add:10}} </li>
+        {% else %}
+            <li>  {{sub_item}} </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endblock %}
