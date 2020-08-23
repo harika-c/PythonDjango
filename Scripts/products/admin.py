@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product,World
+from .models import Product,UserNamePassword
 # Register your models here.
 admin.site.register(Product)
-admin.site.register(World)
+admin.site.register(UserNamePassword)

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> My Blog </h1>
+{% for obj in object_list %}
+<a href="{{obj.get_absolute_url}}">{{obj.name}} <br> </a>
+{% endfor %}
+</body>
+</html>
+{% endblock %}

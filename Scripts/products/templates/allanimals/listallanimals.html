@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+
+<!--{{object}}-->
+
+{% for instance in object %}
+ <a href="{{instance.get_absolute_url}}">url link<br> </a>
+{% endfor %}
+
+{% endblock %}
