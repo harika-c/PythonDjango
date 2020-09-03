@@ -5,7 +5,7 @@ class CreateTweetForm(forms.ModelForm):
     class Meta:
         model=Tweet
         fields=['content']
-    def clean_code(self):
+    def clean_content(self):
         print(f'///////ddddd......{self.cleaned_data}')
         contentTweet=self.cleaned_data.get("content")
         print(f'.......{contentTweet}......{self.cleaned_data}')
