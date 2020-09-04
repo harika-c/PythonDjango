@@ -65,12 +65,13 @@ function handleTweetCreateForm(event){
            const jsonResponse =xhr.response
            const contentError=jsonResponse.content
            let contentErrorMessg;
+        //    console.log(contentError)
            if (contentError){
             contentErrorMessg=contentError[0]
                 if(contentErrorMessg){
                     handleTweetFormError(contentErrorMessg, true)
                 }else{
-                    alert("An error occured please try again later")
+                    alert("error occured please try again later")
                 }
            }
            else{
@@ -82,6 +83,10 @@ function handleTweetCreateForm(event){
         }else if (xhr.status === 500)
         {
             alert("There was a server error")
+        }else if(xhr.status=== 401)
+        {
+            alert("you must login !")
+            window.location.href="/login"
         }
     }
     xhr.onerror = function(){
