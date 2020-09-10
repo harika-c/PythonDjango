@@ -3,30 +3,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/cssfile.css">
-    <title>FindOutAgeInNumbers</title>
+    <link  rel="stylesheet" href="static/css/cssfile.css">
+    <title>Document</title>
 </head>
 <body>
-    <div class="container-1">
-        <h2>Challenge -1 Age in numbers</h2>
-        <div class="flex-box-container-1">
-            <div>
-                <button class="btn btn-primary" onclick="clickMe()">Click me</button>
-            </div>
-            <div>
-                <button class="btn btn-danger" onclick="reset()">reset</button>
-            </div>
-        </div>
-        <div class="flex-box-container-1">
-            <div id="flex-box-result"></div> 
+   <div class="c">
+         <h2>Game - Rock , Paper , Scissors</h2>
+        <div class="f" id="fl">
+                <img id="rock" src="https://content.linkedin.com/content/dam/business/marketing-solutions/global/en_US/blog/bigrock810.jpg" alt="" height="300" width="300" onclick="rockGame(this)"></img>
+                <img id="paper" src="https://i.ytimg.com/vi/SF71ks5FrKQ/hqdefault.jpg" alt="" height="300" width="300" onclick="rockGame(this)"></img>
+                <img id="scissors" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSi7txr-CK7pC9i2Zb_au5P8wHqxRK69HMiow&usqp=CAU" alt="" height="300" width="300" onclick="rockGame(this)"></img>
+                
         </div>
     </div>
-    <div class="container-2">
-        <h2>Challenge-2 Generate Pikachu</h2>
-        <button class="btn btn-success" onclick="generatePika()">Generate Pikachu</button>
-        <div class="flex-box-container-2" id="pika-generate">
-            
-        </div>  
+    <div class="container-3">
+        <h2 id="change color">Color Changing Game</h2>
+        <div class="flex-box-rps" >
+            <form action="">
+                <select name="bd" id="bg" onchange="buttonColorChange(this)">
+                    <option value="random">Random</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="reset">Reset</option>
+                </select>
+            </form>
+            <button class="btn btn-primary">Wee</button>
+            <button class="btn btn-danger">Yahoo</button>
+            <button class="btn btn-success">Google</button>
+            <button class="btn btn-warning">Facebook</button>
+        </div>
     </div>
     <script src="static/jsfiles/jsfile.js">
 
