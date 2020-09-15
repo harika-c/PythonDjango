@@ -1,9 +1,0 @@
-<!DOCTYPE html>
-{% extends "birdsbase.html" %}
-
-{% block content %}
-<h3> Home Page - Birds <br>  </h3>
-{% for ins in object %}
-<a href="{{ins.get_absolute_url}}">{{ins.name}} <br> </a>
-{% endfor %}
-{% endblock %}
