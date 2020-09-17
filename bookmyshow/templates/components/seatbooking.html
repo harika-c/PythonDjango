@@ -1,0 +1,23 @@
+<link  rel="stylesheet" href="templates/components/movies.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="container-2">
+    <div class="overlay">
+        {% for a in loop_times  %}
+            <span id={{a}} onclick="selectedImage(this)">
+                <img class="blink"  src="https://image.shutterstock.com/image-vector/cinema-chair-icon-flat-style-260nw-1596375409.jpg" height=100 width=100 >
+                {{a}}
+                </span>
+            
+        {% endfor %}
+    </div>
+    <div>
+        <button id ="booking" class="btn btn-primary" >Confirm Booking </button>
+    </div>
+</div>
+<script>
+    function selectedImage(data){
+        console.log("selected",data.id)
+        document.getElementById(data.id).remove()
+        document.querySelector()
+    }
+</script>
