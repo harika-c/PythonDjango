@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link  rel="stylesheet" href="templates/components/movies.css">
+
+{% for m in obj %}
+    <div class="container">
+        <div class="images-of-movies">
+            
+            <img src="{{m.imagename}}" id="single-movie-page" height="200" width="200" onclick="location.href = '../movie/'+'{{m.id}}'+''">
+        </div> 
+        <button class="btn btn-primary" id="single-movie-page" onclick="location.href = '../movie/'+'{{m.id}}'+'';singleMovie(this)">Book Tickets</button>
+            {{m.moviename}}
+            {{m.moviecontext}}
+            
+ 
+    </div>        
+{% endfor %}
+
+<div id='single-page' class='row'>
+    
+</div>
+
+<script>
+function singleMovie(data)
+{
+    console.log(data)
+    // return "<button class='btn btn-primary' onclick="location.href = '/allshows/'">Go</button>"
+}
+</script>
