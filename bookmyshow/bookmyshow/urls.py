@@ -16,14 +16,16 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from home.views import home_view,movie_detail_view,movie_list_view,tweet_create_view,all_shows,Movie_Single_View
+from home.views import home_view,movie_detail_view,dynamic_look_up_view,movie_list_view,tweet_create_view,all_shows,Movie_Single_View,seat_booking_page_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home_view),
-    # path('movie/<int:movie_id>',dynamic_look_up_view,name='single-show'),
+    path('movie/apis/<int:id>',dynamic_look_up_view,name='single-show'),
     path('movie/<int:id>',Movie_Single_View.as_view(),name='single-show'),
     path('movielist/',movie_list_view),
     path('create-tweets/',tweet_create_view),
     path('allshows/',all_shows),
+    path('seat-booking-page/',seat_booking_page_view),
+
 ]

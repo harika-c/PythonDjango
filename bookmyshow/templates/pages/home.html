@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div id='tweets' class='row'>
+<div id='movies' class='row'>
     
 </div>
 
@@ -106,12 +106,12 @@ function handleTweetCreateForm(event){
 const createTweetForm=document.getElementById('tweet-create-form')
 createTweetForm.addEventListener('submit',handleTweetCreateForm)
 
-const tweetsContainerEle = document.getElementById('tweets')
+const ContainerEle = document.getElementById('movies')
 // tweetsContainerEle.innerHTML="loading "
-loadTweets(tweetsContainerEle)
+loadMovies(ContainerEle)
 
 
-function loadTweets(tweetEle){
+function loadMovies(ele){
     const xhr=new XMLHttpRequest()
     const method="GET"
     const url="/movielist"
@@ -121,18 +121,19 @@ function loadTweets(tweetEle){
 
     xhr.onload=function(){
         const serverResponse=xhr.response
+        console.log('servhome',serverResponse)
         var listedItems=xhr.response
         console.log(';;',listedItems)
         var i;
-        var tweeterdata="";
+        var movieData="";
         for (i=0;i<listedItems.length;i++)
         {
             listedItems[i]
             console.log(listedItems[i].moviename)
             data=formatMovies(listedItems[i])
-            tweeterdata=tweeterdata+data
+            movieData=movieData+data
         }
-        tweetEle.innerHTML=tweeterdata
+        ele.innerHTML=movieData
 
     }
     xhr.send()

@@ -26,11 +26,15 @@ class Movies(models.Model):
     moviename=models.TextField(blank=True, null=True)
     imagename=models.TextField(blank=True, null=True)
     moviecontext=models.TextField(blank=True, null=True)
+    hallname=models.TextField(blank=True,null=True)
+    locationname=models.TextField(blank=True,null=True)
     def serialize(self):
         return { 
         "moviename": self.moviename,
         "imagename": self.imagename,
         "moviecontext": self.moviecontext,
+        "hallname":self.hallname,
+        "locationname":self.locationname
          }
     def get_absolute_url(self):
         return reverse("single-show",kwargs={'movie_id':self.id})

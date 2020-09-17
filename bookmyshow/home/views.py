@@ -109,3 +109,30 @@ class Movie_Single_View(DetailView):
         id_=self.kwargs.get("id")
         print(",lpoplpo",id_)
         return get_object_or_404(Movies,id=id_)
+def dynamic_look_up_view(request,id,*args,**kwargs):
+    print("............views detail............")
+    data={
+        "id":id,
+    }
+    status=200
+    try:
+        obj=Movies.objects.get(id=id)
+        data={
+            'moviename':obj.moviename,
+            'imagename':obj.imagename,
+            'moviecontext':obj.moviecontext,
+            'hallname':obj.hallname,
+            'locationname':obj.locationname
+            }
+       
+    except :
+        data['message']='page not found'
+        status=400    
+    
+    return JsonResponse(data,status=status)
+def seat_booking_page_view(request,*args,**kwargs):
+    items={'Hyderabad','Delhi'}
+    context = {'items': items}
+    context['loop_times'] = range(1, 31)
+   
+    return render(request,'components/seatbooking.html',context)

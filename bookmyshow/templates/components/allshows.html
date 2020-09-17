@@ -7,7 +7,7 @@
             
             <img src="{{m.imagename}}" id="single-movie-page" height="200" width="200" onclick="location.href = '../movie/'+'{{m.id}}'+''">
         </div> 
-        <button class="btn btn-primary" id="single-movie-page" onclick="location.href = '../movie/'+'{{m.id}}'+'';singleMovie(this)">Book Tickets</button>
+        <button class="btn btn-primary" id="single-movie-page" onclick="location.href = '../movie/'+'{{m.id}}'+''">Book Tickets</button>
             {{m.moviename}}
             {{m.moviecontext}}
             
@@ -25,4 +25,36 @@ function singleMovie(data)
     console.log(data)
     // return "<button class='btn btn-primary' onclick="location.href = '/allshows/'">Go</button>"
 }
+
+const containerEle = document.getElementById('single-page')
+loadMovies(containerEle)
+
+
+function loadMovies(ele){
+    const xhr=new XMLHttpRequest()
+    const method="GET"
+    const url="/movielist"
+    const responseType="json"
+    xhr.responseType=responseType
+    xhr.open(method,url)
+
+    xhr.onload=function(){
+        const serverResponse=xhr.response
+        var listedItems=xhr.response
+        console.log(';;',listedItems)
+        var i;
+        var movieData="";
+        for (i=0;i<listedItems.length;i++)
+        {
+            listedItems[i]
+            console.log(listedItems[i].moviename)
+            movieData=movieData+data
+        }
+       
+
+    }
+    xhr.send()
+
+}
+
 </script>

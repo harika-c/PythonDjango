@@ -1,13 +1,66 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link  rel="stylesheet" href="templates/components/movies.css">
+<html>
+    <body>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link  rel="stylesheet" href="templates/components/movies.css">
 
-<div class='row text-center'>
-    <div class='col'>
-        <h4>{{object.moviename}}</h4>
-        <img src="{{object.imagename}}" height=200 width=200><br>
-        {{object.moviecontext}}
-        
-        <button class="btn btn-primary">Book Tickets</button>
-        
-    <div>
-</div>
+        <div class='row text-center'>
+            <div class='col' id='pagewise' >
+                <div1 id="{{object.id}}">
+                    <h3>{{object.moviename}}</h3>
+                    <img src="{{object.imagename}}" height=200 width=200><br>
+                    {{object.moviecontext}}
+                    <div  class="location">
+                        <h3>Show place :  {{object.hallname}}
+                            {{object.locationname}}
+                        </h3>
+                        <button class="btn btn-primary" onclick="location.href = '/seat-booking-page/'"> Book Seats </button>
+                    </div1>
+
+                <div>
+            </div>
+        </div>
+
+
+        <script>
+            const ContainerEle = document.getElementsByTagName('div1')
+            console.log('cons',ContainerEle[0].id)
+            
+            loadMovies(ContainerEle)
+
+            function loadMovies(ele){
+                const xhr=new XMLHttpRequest()
+                const method="GET"
+                const url="../movie/apis/"+ele[0].id+""
+                const responseType="json"
+                xhr.responseType=responseType
+                xhr.open(method,url)
+
+                xhr.onload=function(){
+                    const serverResponse=xhr.response
+                    console.log('sever',serverResponse)
+                    var listedItems=xhr.response
+                    console.log(';;',listedItems)
+                    var i;
+                    var movieData="";
+                    for (i=0;i<listedItems.length;i++)
+                    {
+                        listedItems[i]
+                        console.log('inside',listedItems[i].moviename)
+                        // data=formatMovies(listedItems[i])
+                        movieData=movieData+data
+                    }
+                    ele.innerHTML=movieData
+
+                }
+                xhr.send()
+
+            }
+            function formatMovies(movieObj)
+            {
+                var formattedTweet= "<div class ='col-12 col-md-10 mx-auto border rounded py-3 mb-4 tweet' id='tweet "+movieObj.moviename+"'><p>"+movieObj.moviecontext+"</p><img src='"+movieObj.imagename+"' height=100 width=200></div>"
+                return formattedTweet 
+            }
+
+        </script>
+    </body>
+</html>
