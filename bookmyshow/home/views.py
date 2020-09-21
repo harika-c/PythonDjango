@@ -134,5 +134,44 @@ def seat_booking_page_view(request,*args,**kwargs):
     items={'Hyderabad','Delhi'}
     context = {'items': items}
     context['loop_times'] = range(1, 31)
-   
     return render(request,'components/seatbooking.html',context)
+
+def seat_confirmation_page(request,*args,**kwargs):
+    context={}
+    return render(request,'components/seat_confirmation.html',context)
+
+def user_create(request):
+    if request.method=="POST":
+        print("lllllllllllllllll",request)
+        username=request.POST['username']
+        password=request.POST['password']
+        confirm_password=request.POST['confirm_password']
+        user =Tweet.objects.create_user(username=username,password=password)
+        user.save()
+        print("user created")
+        return redirect('/')
+    else: 
+        context={}
+    return render(request,'pages/register.html',context)    
+    # print("............views create pure django ............")
+    # if not request.user.is_authenticated:
+    #     user=None
+    #     if request.is_ajax():
+    #         return JsonResponse({},status=401)
+    #     return redirect(settings.LOGIN_URL)
+    # form=CreateTweetForm(request.POST or None)
+    # next_url=request.POST.get("next") or None
+    # if form.is_valid():
+    #     obj=form.save(commit=False)
+    #     obj.save()
+    #     user=request.user
+    #     if request.is_ajax():
+    #         return JsonResponse(obj.serialize(),status=201)  #201 == created items 
+    #     if next_url !=None and is_safe_url(next_url,ALLOWED_HOSTS):
+    #         return redirect(next_url)
+    #     form=CreateTweetForm()
+    # print(f'form.erros()---{form.errors}')
+    # if form.errors:
+    #     if request.is_ajax():
+    #         return JsonResponse(form.errors,status=400)
+    # return render(request,'pages/register.html',context={'form':form})

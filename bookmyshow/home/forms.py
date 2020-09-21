@@ -6,12 +6,9 @@ class CreateTweetForm(forms.ModelForm):
     print("............forms............")
     class Meta:
         model=Tweet
-        fields=['content']
+        fields=['username','password']
     def clean_content(self):
         print(f'///////ddddd......{self.cleaned_data}')
-        contentTweet=self.cleaned_data.get("content")
-        print(f'.......{contentTweet}......{self.cleaned_data}')
-        if len(contentTweet) > MAX_LENGTH :
-             raise forms.ValidationError("tweet is too long")
+        contentTweet=self.cleaned_data.get("username")
         return contentTweet
         

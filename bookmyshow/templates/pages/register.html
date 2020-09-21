@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<link  rel="stylesheet" href="templates/components/movies.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/" method="POST">
+
+        <!-- <input type="text" name="first_name" placeholder="First Name"><br>
+        <input type="text" name="last_name" placeholder="Last Name"><br>
+        <input type="text" name="email" placeholder="Email Id"><br> -->
+    </form>
+    <div class='row mb-3'>
+        <div class='col-md-4 mx-auto col-10'>
+            <form class='form' id='create-form' method='POST' action='/'>{% csrf_token %}
+                <div class='d-none alert alert-danger' id='tweet-create-form-error'></div>
+                <input type='hidden' value='/' name='next'/>
+                <input type="text" name="username" placeholder="First Name"><br>
+                <input type="text" name="password" placeholder="Password"><br>
+                <input type="text" name="confirm_password" placeholder="Confirm Password"><br>
+                 <button type='submit' class='btn btn-primary'>Tweet</button>   
+            </form>
+        </div>
+    </div>
+</body>
+</html>

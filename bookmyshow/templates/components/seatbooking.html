@@ -11,13 +11,14 @@
         {% endfor %}
     </div>
     <div>
-        <button id ="booking" class="btn btn-primary" >Confirm Booking </button>
+        <button id ="booking" class="btn btn-primary" onclick="location.href = '../seat-confirmation/'">Confirm Booking </button>
     </div>
 </div>
 <script>
     function selectedImage(data){
         console.log("selected",data.id)
         document.getElementById(data.id).remove()
-        document.querySelector()
+        var dataAppended="Confirm Booking on ";
+        document.getElementById('booking').innerHTML=dataAppended+data.id;
     }
 </script>

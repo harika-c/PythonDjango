@@ -15,8 +15,8 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from home.views import home_view,movie_detail_view,dynamic_look_up_view,movie_list_view,tweet_create_view,all_shows,Movie_Single_View,seat_booking_page_view
+from django.urls import path,include
+from home.views import home_view,movie_detail_view,dynamic_look_up_view,movie_list_view,tweet_create_view,all_shows,Movie_Single_View,seat_booking_page_view,seat_confirmation_page,user_create
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +27,10 @@ urlpatterns = [
     path('create-tweets/',tweet_create_view),
     path('allshows/',all_shows),
     path('seat-booking-page/',seat_booking_page_view),
+    path('seat-confirmation/',seat_confirmation_page),
+    # path('register-user/',include('userauthentication.urls')),
+   
+    path('register/',user_create,name='reg')
+
 
 ]
