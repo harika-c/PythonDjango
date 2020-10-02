@@ -1,22 +1,3 @@
 inside app<app-hello></app-hello>
-<input type="text" [value]="myVariable"  (input)="giveInput($event)" [disabled]=myVar>
-<input type="text" [(ngModel)]="myVariable2" [disabled]=myVar>
-<button (click)="myFunction()">click Here</button>
-{{myVariable}}
-{{myVariable2}}
-<table>
-    <tr>
-        <td>number</td>
-        <td>name</td>
-        <td>age</td> 
-        <td>hobbies</td>
-    </tr>
-    <tr *ngFor="let expand of data; let i = index;let evenNumber=even;let oddNumber=odd;let firstEle=first;let lastEle=last;" [ngClass]="{oddn: oddNumber, evenn : evenNumber, firste : firstEle, laste : lastEle}">
-        <td>{{i}}</td>
-        <td>{{expand.name}}</td>
-        <td>{{expand.age}}</td>
-        <td>{{expand.hobbies}}</td>
-    </tr>
-</table>
-
+<router-outlet></router-outlet>
 

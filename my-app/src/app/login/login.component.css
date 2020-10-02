@@ -1,0 +1,26 @@
+form{
+    display:flex;
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    
+}
+input:not(.button){
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+    font-size: 20px;
+    padding: 5px 10px;
+    margin: 5px;
+    min-width: 300px;
+}
+.button{
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    background: violet;
+    border: 1px solid black;
+    text-decoration: none;
+    margin: 4px;
+}
