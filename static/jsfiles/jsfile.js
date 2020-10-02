@@ -111,11 +111,17 @@ function randomFunction(){
 document.querySelector('#blackjack-hit').addEventListener('click',hitButton);
 document.querySelector('#blackjack-deal').addEventListener('click',dealButton);
 document.querySelector('#blackjack-stand').addEventListener('click',standButton);
+
 yourcards={
     'you':{'scoreSpan':'#your-box-result','div':'#your-box','score':0},
     'dealer':{'scoreSpan':'#dealer-box-result','div':'#dealer-box','score':0},
     'cards':['2','3','4','5','6','7','8','9','10','K','J','Q','A'],
-    'cardsMap':{'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':1,'Q':1,'K':1,'A':[1,11]}
+    'cardsMap':{'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':1,'Q':1,'K':1,'A':[1,11]},
+    'wins':0,
+    'losses':0,
+    'draws':0,
+    'isStand':false,
+    'turnOver':false,
 }
 const youData=yourcards['you'];
 const dealerData=yourcards['dealer'];
@@ -127,12 +133,16 @@ const cashSound=new Audio('static/sounds/cash.mp3');
 var total=0;
 
 function hitButton(){
-    var card=randomCards()
-    totalOfCards(card)
-    // showCard(dealerData,card);
-    showCard(youData,card);
-    totalOfCards(youData,card);
-    updateUiScore(youData);
+    console.log(yourcards['isStand'])
+    if(!yourcards['isStand']){
+        var card=randomCards()
+        totalOfCards(card)
+        // showCard(dealerData,card);
+        showCard(youData,card);
+        totalOfCards(youData,card);
+        updateUiScore(youData);
+        
+    }
 }
 function showCard(data,card){
     if(data['score']<=21){
@@ -145,8 +155,7 @@ function showCard(data,card){
 }
 
 function dealButton(){
-    win=computeWinner();
-    showResult(win);
+    
     images=document.querySelector(youData['div']).querySelectorAll('img');
     imagesOfDealer=document.querySelector(dealerData['div']).querySelectorAll('img');
 
@@ -163,6 +172,13 @@ function dealButton(){
 
     document.querySelector(youData['scoreSpan']).style.color='#ffffff';
     document.querySelector(dealerData['scoreSpan']).style.color='#ffffff';
+
+    document.querySelector('#black-jack-result').textContent="Let's Play";
+    document.querySelector('#black-jack-result').style.color='black';
+
+    yourcards['isStand']=false;
+    
+
 }
 function randomCards(){
     return randomCard[Math.floor(Math.random(randomCard)*randomCard.length)]
@@ -178,10 +194,11 @@ function totalOfCards(yourdata,card){
         yourdata['score']+=cardsMap[card];
     }
     
-    console.log(yourdata['score'])
+  
 }
 function updateUiScore(yourdata){
     if(yourdata['score']>21){
+        yourdata['turnOver']=true;
         var k=document.querySelector(yourdata['scoreSpan']).textContent='Bust!!!';
         // var k=document.getElementById('your-box-result').textContent='BUST!!!'
         console.log(k)
@@ -192,15 +209,23 @@ function updateUiScore(yourdata){
     }
 }
 function dealerLogic(){
-    let card=randomCards();
-    showCard(dealerData,card);
-    totalOfCards(dealerData,card);
-    updateUiScore(dealerData);
-    
+    while(dealerData['score']<18 && yourcards['isStand']==true){
+        let card=randomCards();
+        showCard(dealerData,card);
+        totalOfCards(dealerData,card);
+        updateUiScore(dealerData);
+        if(dealerData['score']>17){
+            win=computeWinner();
+            showResult(win);
+        }
+    }
 }
+
 function standButton(){
+    yourcards['isStand']=true
     dealerLogic();
 }
+
 function computeWinner(){
     let winner;
    console.log(dealerData['score'],youData['score'])
@@ -235,14 +260,20 @@ function showResult(winner){
     if(winner == dealerData){
         textIs="You Lost :(";
         colorIs='red';
+        yourcards['losses']+=1
+        document.querySelector('#losses').textContent=yourcards['losses'];
         awwSound.play();
     }else if(winner == youData){
         textIs="You Won :)";
         colorIs='green';
+        yourcards['wins']+=1
+        document.querySelector('#wins').textContent=yourcards['wins'];
         cashSound.play();
     }else {
         textIs="You Drew :/";
-        colorIs='yellow';
+        colorIs='blue';
+        yourcards['draws']+=1
+        document.querySelector('#draws').textContent=yourcards['draws'];
     }
     document.querySelector('#black-jack-result').textContent=textIs;
     document.querySelector('#black-jack-result').style.color=colorIs;
