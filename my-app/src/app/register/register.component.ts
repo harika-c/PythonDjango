@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     if(errors.length===0)
     {
       this.auth.registerUser(uname,pwd).subscribe(data=>{
-        console.log('dataaa',data);
+        console.log('dataaa',data,'data_success'+data.success);
         if(data.success){
           this.router.navigate(['dashboard']);
         }

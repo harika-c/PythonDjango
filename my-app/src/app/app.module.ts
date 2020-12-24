@@ -6,15 +6,16 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './hello/hello.component';
 import { LetsseeService } from './letssee.service';
 import { AuthService } from './auth.service';
+import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { DataComponent } from './data/data.component';
 import { Router, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     DataComponent,
     LoginComponent,
-    AdminComponent,
+    LogoutComponent,
     DashboardComponent,
     RegisterComponent,
   ],
@@ -46,9 +47,8 @@ import { RegisterComponent } from './register/register.component';
         component:LoginComponent
       },
       {
-        path:'admin',
-        component:AdminComponent,
-        canActivate:[AuthGuard]
+        path:'logout',
+        component:LogoutComponent
       },
       {
         path:'register',
@@ -56,11 +56,12 @@ import { RegisterComponent } from './register/register.component';
       },
       {
         path:'dashboard',
-        component:DashboardComponent
+        component:DashboardComponent,
+        canActivate:[AuthGuard]
       }
     ])
   ],
-  providers: [LetsseeService , AuthService, AuthGuard],
+  providers: [LetsseeService , AuthService, AuthGuard , UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,11 +8,13 @@ interface myData{
 }
 interface registerResponse{
   success:boolean
+  message:string
 }
 
 @Injectable()
 export class AuthService {
   private loggedInStatus=false;
+  
   setLoggedIn(value: boolean){
     this.loggedInStatus=value
   }
@@ -27,12 +29,12 @@ export class AuthService {
    }
 
   getUserDetails(username,password){
-    return this.http.post<myData>('/api/login',{
+    return this.http.post<myData>('http://localhost:8001/api/login',{
       username,password
     })
   }
   registerUser(username,password){
-    return this.http.post<registerResponse>('/api/register',{
+    return this.http.post<registerResponse>('http://localhost:8001/api/register',{
       username,
       password
     })
