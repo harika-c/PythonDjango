@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './calculator/App';
+// import App from './weather.component/App';
+import App from './redux/App';
 import reportWebVitals from './reportWebVitals';
 import {Auth0Provider} from '@auth0/auth0-react';
 import { BrowserRouter as Router, Route, Switch,Link } from 'react-router-dom';
