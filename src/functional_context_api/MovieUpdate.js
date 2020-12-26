@@ -1,5 +1,5 @@
 import {DataContext} from './DataContext';
-import {useContext, useState} from "react";
+import {useContext, useState , useEffect} from "react";
 const MovieUpdate=()=>{
     const [movie,setmovies] = useContext(DataContext);
     const [moviename, setmoviename] = useState();
@@ -17,6 +17,10 @@ const MovieUpdate=()=>{
         e.preventDefault();
         setmovies(preMovies=>[...preMovies,{name:moviename,price:  movieprice}])
     }
+    useEffect(() => {
+        console.log("movieupdate..................")
+        
+    }, [])
     return (
         <div>
             <form onSubmit={formsubmit}>
