@@ -1,0 +1,20 @@
+.nav__bar{
+    margin: 12px;
+    background-color:blueviolet;
+    font-weight: 50px;
+    font-size: 20px;
+    padding: 10px;
+    
+    
+
+}
+
+.nav__bar span{
+    flex-direction: row;
+    padding : 20px;
+   
+    color:cornsilk;
+    
+    
+    
+}
