@@ -1,7 +1,9 @@
+import SearchAnimations from "./postcalls/SearchAnimations"
+
 const Animations =()=>{
     return (
         <div>
-            Hello animations
+            <SearchAnimations />
             </div>
     )
 }

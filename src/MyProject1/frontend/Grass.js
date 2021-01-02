@@ -1,8 +1,10 @@
+import SearchGrass from "./postcalls/SearchGrass"
+
 const Grass =()=>{
 
     return (
         <div>
-            grass page 
+            <SearchGrass/>
             </div>
     )
 

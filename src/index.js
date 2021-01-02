@@ -5,6 +5,7 @@ import './index.css';
 // import App from './redux/App';
 // import App from './functional_context_api/App';
 import App from './MyProject1/frontend/App';
+// import App from './redux_tutorial/App';
 import reportWebVitals from './reportWebVitals';
 import {Auth0Provider} from '@auth0/auth0-react';
 import { BrowserRouter as Router, Route, Switch,Link } from 'react-router-dom';

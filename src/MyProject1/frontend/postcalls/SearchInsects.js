@@ -21,6 +21,7 @@ const SearchInsects=()=>{
             <form onSubmit={onSubmitValue}>
                 <input type="text" name="insects" onChange={onChangeValue}></input>
                 <button type="submit">Submit</button>
+                {console.log('in search flower...',state)}
                 {state.inse!=undefined ? state.inse.map(aa=>(<h1>{aa}</h1>)): state.inse=[]}
                 </form>
             </div>

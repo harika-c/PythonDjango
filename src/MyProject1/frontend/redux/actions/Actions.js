@@ -10,3 +10,15 @@ export const insects =(aa)=>{
         payload : aa
     }
 }
+export const grass=(aa)=>{
+    return {
+        type: "g1",
+        payload: aa
+    }
+}
+export const animations=(aa)=>{
+    return {
+        type: "a1",
+        payload: aa
+    }
+}

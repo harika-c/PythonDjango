@@ -7,12 +7,13 @@ import Grass from './Grass';
 
 import { BrowserRouter as Router ,Route, Switch} from 'react-router-dom';
 import {createStore } from 'redux';
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import Multiple_Reducer from './redux/reducers/Multiple_Reducer';
 
 const store=createStore(Multiple_Reducer);
 
 function App(){
+    
     return(
         <Provider store={store}>
             <div>
@@ -32,9 +33,14 @@ function App(){
 }
 
 const HomePage =()=>{
+    const state = useSelector(state => state.flower)
     return (
         <div>
-            Home Page 
+            
+            {state.flow!=undefined? state['flow'].map(a=>(<div>{a}</div>)): "no flower data"}
+            {state.anim!=undefined? state['anim'].map(a=>(<div>{a}</div>)): "no animation data"}
+            {state.inse!=undefined? state['inse'].map(a=>(<div>{a}</div>)): "no insect data"}
+            {state.gras!=undefined? state['gras'].map(a=>(<div>{a}</div>)): "no grass data"}
             </div>
     )
 }
