@@ -14,7 +14,7 @@ const SearchFlower =()=>{
         .then(data=>{
             console.log('data.////',data)
             setflowervar(data)
-            dispatch(flowers(flowervar))
+            dispatch(flowers(data))
             
         })
         .catch(e=> {
@@ -40,13 +40,14 @@ const SearchFlower =()=>{
         
         <div>
             {/* {flowervar.map(aa=>(<div>{aa.name}</div>))} */}
-            {/* {flowervar} */}
+            {console.log("....>>>",flowervar)}
             <form onSubmit={onSubmitValue}>
                 <input type="text " name="flower" onChange={onChangeValue}></input>
                 <button type="submit" > Submit </button>  
             </form>
-            {console.log('in search flower...',state)}
-            {state.flow !=undefined ? state.flow.map(a=>(<h5>{a}</h5>)) : state.flow=[]}
+            {console.log('in search flower...',state.state)}
+            {state.state !=undefined ? state.state.map(a=>(<h5>{a.name}</h5>)) : ""}
+            {/* {state.state.map(a=>(<h5>{a.name}</h5>))} */}
         </div>
     )
 }

@@ -11,7 +11,7 @@ const Reducer_Flower=(state=[] , action)=>{
         case "f1":
             console.log("flower reducer...///",state,';;;',action.payload)
             return { 
-                ...state, state: action.payload
+                 state: action.payload
             };
             // return {...state1, flow: action.payload}
             

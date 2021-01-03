@@ -27,15 +27,22 @@ app.get("/plants",(req,res)=>{
 })
 
 app.get('/plants/:id',(req,res)=>{
-    const val=flowersandplants.findById(a=>a.id == req.params.id)
+    flowersandplants.findById(req.params.id)
+    .then(
+        val=> {
+        if (!val){
+        res.status(404).send("data not found")
+        }
+        else{
+            console.log("inside get function...")
+            return res.send(val)
+        }
+    })
+    .then(console.log('hell0 then 222222'))
+    .catch(err=> console.log("error is ...",err))
     // const str = CircularJSON.stringify(val);
     // JSON.parse(str)
-    if (!val){
-        res.status(404).send("data not found")
-    }
-    else{
-        res.send(val)
-    }
+    
 })
 
 app.post("/plants",(req,res)=>{
@@ -74,4 +81,31 @@ app.delete('/plants',(req,res)=>{
     .catch(err=>console.log(err))
     //  flowersandplants==(req.params.name)
 })
+app.put('/plants/:id',(req,res)=>{
+    
+    flowersandplants.findByIdAndUpdate(req.params.id)
+    .then(val=>{
+        const schema={
+            name: joi.string().required(),
+            about: joi.string().required()
+        }
+        const result=joi.validate(req.body,schema);
+        if(!result){
+            return res.status(404).send(result.error)
+        }
+        val.name=req.body.name
+        val.about=req.body.about
+        console.log("hhhhh")
+        val.save(function(err,updatedObject){
+            if(err){
+                return res.status(500).send();
+            }
+            return res.status(201).send(val);
+        })
+        
+    })
+    .then(console.log("data is sent"))
+    .catch(err=>console.log(err))
+})
+
 app.listen(port , ()=> console.log(`listening on port ${port}`))
