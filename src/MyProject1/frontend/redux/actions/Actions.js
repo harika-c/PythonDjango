@@ -1,3 +1,6 @@
+import axios from "axios";
+
+
 export const flowers =(aa)=>{
     return {
         type: "f1",
@@ -21,4 +24,30 @@ export const animations=(aa)=>{
         type: "a1",
         payload: aa
     }
+}
+export const postCall=(aa)=>{
+    return {
+        type:"POST",
+        payload : aa
+    }
+}
+
+export const fetchApi=(data)=>{
+    
+    return (dispatch)=>{
+        // switch(){
+        //     case "flo":
+                axios.get("http://localhost:8001/plants/"+data)
+                .then(res=>{
+                    console.log(res,"axios res...")
+                    dispatch(postCall(res));
+                })
+                .catch(err=>console.log(err,'axios error...'))
+            // case "gra":
+
+        // }
+    }
+}
+export const test=()=>{
+    return "null"
 }
