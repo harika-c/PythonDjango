@@ -1,13 +1,16 @@
-import React from 'react';
+import {React,useEffect} from 'react';
 import Nav from './Nav';
-import Animations from './Animations';
-import Insects from './Insects';
-import Flowers from './Flowers';
-import Grass from './Grass';
+import SearchClothes from './postcalls/SearchClothes';
+import SearchElectronicDevices from './postcalls/SearchElectronicDevices';
+import SearchFruitsVegetables from './postcalls/SearchFruitsVegetables';
+import SearchHomeUtensils from './postcalls/SearchHomeUtensils';
+import SearchGroceries from './postcalls/SearchGroceries';
+import HomePage from './postcalls/HomePage';
+
 import thunk from 'redux-thunk';
 import { BrowserRouter as Router ,Route, Switch} from 'react-router-dom';
 import {applyMiddleware, createStore } from 'redux';
-import {Provider, useSelector} from 'react-redux';
+import {Provider, useSelector,connect} from 'react-redux';
 import Multiple_Reducer from './redux/reducers/Multiple_Reducer';
 
 const store=createStore(Multiple_Reducer,applyMiddleware(thunk));
@@ -21,10 +24,11 @@ function App(){
                     <Nav/>
                     <Switch>
                         <Route path="/" exact  component={HomePage}/>
-                        <Route path="/animations" component={Animations}/>
-                        <Route path="/grass" component={Grass}/>
-                        <Route path='/flowers' component={Flowers}/>
-                        <Route path='/insects' component={Insects}/>
+                        <Route path="/clothes" component={SearchClothes}/>
+                        <Route path="/electronics" component={SearchElectronicDevices}/>
+                        <Route path='/groceries' component={SearchGroceries}/>
+                        <Route path='/fruitsandvegs' component={SearchFruitsVegetables}/>
+                        <Route path='/homeutensils' component={SearchHomeUtensils}/>
                     </Switch>
                 </Router>
             </div>
@@ -32,16 +36,5 @@ function App(){
     )
 }
 
-const HomePage =()=>{
-    const state = useSelector(state => state.flower)
-    return (
-        <div>
-            
-            {state.flow!=undefined? state['flow'].map(a=>(<div>{a}</div>)): "no flower data"}
-            {state.anim!=undefined? state['anim'].map(a=>(<div>{a}</div>)): "no animation data"}
-            {state.inse!=undefined? state['inse'].map(a=>(<div>{a}</div>)): "no insect data"}
-            {state.gras!=undefined? state['gras'].map(a=>(<div>{a}</div>)): "no grass data"}
-            </div>
-    )
-}
+ 
 export default App;

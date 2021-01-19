@@ -2,32 +2,32 @@ import {animations,fetchApi} from '../redux/actions/Actions';
 import {useState,useEffect } from 'react';
 import {connect, useDispatch , useSelector} from 'react-redux';
 import axios from 'axios';
-const SearchAnimations=({state,fetchApis})=>{
+const SearchFruitsVegetables=({state,fetchApis})=>{
     // const dispatch = useDispatch()
     // const state = useSelector(state=>state.flower)
-    const [animationname, setanimationval] = useState()
-    const [animationdescription,setanimationdescription]=useState()
+    const [fruitsandvegiesname, setfruitsandvegiesname] = useState()
+    const [fruitsandvegiesdes,setfruitsandvegiesdes]=useState()
     const forName=(e)=>{
-        setanimationval(e.target.value) 
+        setfruitsandvegiesname(e.target.value) 
     }
     const forDescription=(e)=>{
-        setanimationdescription(e.target.value)
+        setfruitsandvegiesdes(e.target.value)
     }
     const onSubmitValue=(e)=>{
         e.preventDefault();
         // dispatch(animations(animationval))
         // console.log()
-        if(animationname.length<3 ){
+        if(fruitsandvegiesname.length<3 || fruitsandvegiesname.indexOf(" ")==0 ){
             const validation_text="Please enter more that 3 letters";
-            if(animationname.indexOf(" ")==0){
+            if(fruitsandvegiesname.indexOf(" ")==0){
                 const validation_text2="No spaces are accepted at the start of the word";
                 document.getElementById('errors').innerHTML=validation_text+validation_text2;
             }else {
             document.getElementById('errors').innerHTML=validation_text;
             }
         }else {
-            const aa=[{"name": animationname, "about": animationdescription}]
-            axios.post('http://localhost:8001/plants/animation',aa)
+            const aa=[{"name": fruitsandvegiesname, "about": fruitsandvegiesdes}]
+            axios.post('http://localhost:8001/mywebsite/fruitsandvegies',aa)
             .then(res=>console.log("axios post response ",res))
             .catch(err=> console.log('axios post error',err))
         }
@@ -38,13 +38,13 @@ const SearchAnimations=({state,fetchApis})=>{
     return (
         <div>
             <form  onSubmit={onSubmitValue}>
-                <input type="text" name="animations_name" onChange={forName}/>
+                <input type="text" name="fruitsandvegies_name" onChange={forName}/>
                 <p id="errors" name="e"></p>
-                <input type="text" name="animations_description" onChange={forDescription}/>
+                <input type="text" name="fruitsandvegies_description" onChange={forDescription}/>
                 <button type="submit">Submit</button>
             </form>
-            {console.log('.....',state)}
-            {/* {state.state ? state.state.map(a=>(<h5>{a}</h5>)): "undefined"} */}
+            {/* {console.log('.....',state.state)} */}
+            {state.state !=  undefined ? state.state.data.map(a=>(<h5>{a.name}</h5>)): "undefined"}
         </div>
     )
 }
@@ -57,7 +57,7 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps=(dispatch)=>{
     console.log('map dispatch to props ')
     return {
-        fetchApis:()=> dispatch(fetchApi("animations"))
+        fetchApis:()=> dispatch(fetchApi("fruitsandvegies"))
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps) (SearchAnimations);
+export default connect(mapStateToProps,mapDispatchToProps) (SearchFruitsVegetables);

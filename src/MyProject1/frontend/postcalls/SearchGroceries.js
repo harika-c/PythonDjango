@@ -4,31 +4,31 @@ import {fetchApi} from '../redux/actions/Actions'
 import {connect} from  'react-redux';
 import axios from 'axios';
 
-const SearchGrass=({state,fetchApis})=>{
-    const [grassvalue, setgrassvalue] = useState();
-    const [grassdescrip,setgrassdescrip]=useState();
+const SearchGroceries=({state,fetchApis})=>{
+    const [groceriesname, setgroceriesname] = useState();
+    const [groceriesdes,setgroceriesdes]=useState();
 
     useEffect(() => {
         fetchApis();
     }, [])
     const onSubmitValue=(e)=>{
         e.preventDefault();
-        const aa=[{"name" : grassvalue, "about" : grassdescrip}]
-        axios.post('http://localhost:8001/plants/grass',aa)
+        const aa=[{"name" : groceriesname, "about" : groceriesdes}]
+        axios.post('http://localhost:8001/mywebsite/groceries',aa)
         .then(res=>console.log(res,'axios post '))
         .catch(err=>console.log(err))
     }
     const forName=(e)=>{
-        setgrassvalue(e.target.value);
+        setgroceriesname(e.target.value);
     }
     const forDescription=(e)=>{
-        setgrassdescrip(e.target.value);
+        setgroceriesdes(e.target.value);
     }
     return (
         <div>
             <form onSubmit={onSubmitValue}>
-                <input type ="text" name="grass_name" onChange={forName}></input>
-                <input type="text" name="grass_description" onChange={forDescription}></input>
+                <input type ="text" name="groceries_name" onChange={forName}></input>
+                <input type="text" name="groceries_description" onChange={forDescription}></input>
                 <button type="submit"> Submit</button>
             </form>
             {console.log('search grass...',state.state)}
@@ -49,4 +49,4 @@ const mapDispatchToProps=dispatch=>{
     }
 }
 
-export default connect (mapStateToProps,mapDispatchToProps) (SearchGrass);
+export default connect (mapStateToProps,mapDispatchToProps) (SearchGroceries);

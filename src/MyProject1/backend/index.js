@@ -1,11 +1,13 @@
 import  mongoose from  'mongoose';
 import express from 'express';
-import flowersandplants from './dbFlowerSchema.js';
-import {flowersDB, grassDB , insectDB,animationDB} from './flowersSchema.js';
+import completedata from './completeDataSchema.js';
+import {clothesDB, electronicdevicesDB , fruitsandvegiesDB,groceriesDB,homeutensilsDB} from './categorywiseSchema.js';
+import bannersDB from './bannersSchema.js';
 
 import joi from 'joi';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+
 
 const app=express();
 const connection_url ="mongodb+srv://myprojectown:L8MyTXRlLIvDGevC@cluster0.9qcp5.mongodb.net/flowers?retryWrites=true&w=majority"
@@ -22,9 +24,16 @@ mongoose.connect(connection_url,{
     useCreateIndex: true,
     useUnifiedTopology: true
 })
-
-app.get("/plants",(req,res)=>{
-    flowersandplants.find((err,data)=>{
+app.get('/mywebsite/banners',(req,res)=>{
+    bannersDB.find((err,data)=>{
+        if(err){
+            return res.status(500).send(err)
+        }
+        return res.status(200).send(data)
+    })
+})
+app.get("/mywebsite",(req,res)=>{
+    completedata.find((err,data)=>{
         if(err){
             res.status(500).send(err)
         }else{
@@ -32,9 +41,9 @@ app.get("/plants",(req,res)=>{
         }
     })
 })
-app.get('/plants/flower',(req,res)=>{
+app.get('/mywebsite/clothes',(req,res)=>{
     
-    flowersDB.find((err,data)=>{
+    clothesDB.find((err,data)=>{
         console.log('...res...data..',data);
         if(err){
             res.status(500).send(err)
@@ -43,8 +52,8 @@ app.get('/plants/flower',(req,res)=>{
         }
     })
 })
-app.get('/plants/grass',(req,res)=>{
-    grassDB.find((err,data)=>{
+app.get('/mywebsite/electronicdevices',(req,res)=>{
+    electronicdevicesDB.find((err,data)=>{
         if(err){
             res.status(500).send(err)
         }else{
@@ -52,8 +61,8 @@ app.get('/plants/grass',(req,res)=>{
         }
     })
 })
-app.get('/plants/insect',(req,res)=>{
-    insectDB.find((err,data)=>{
+app.get('/mywebsite/fruitsandvegies',(req,res)=>{
+    fruitsandvegiesDB.find((err,data)=>{
         if(err){
             res.status(500).send(err)
         }else {
@@ -61,17 +70,25 @@ app.get('/plants/insect',(req,res)=>{
         }
     })
 })
-app.get('/plants/animation',(req,res)=>{
-    animationDB.find((err,data)=>{
+app.get('/mywebsite/groceries',(req,res)=>{
+    groceriesDB.find((err,data)=>{
         if(err){
-            res.status(500).send(data)
+            res.status(500).send(err)
         }else{
-            res.send(200).send(data)
+            res.status(200).send(data)
         }
     })  
 })
-app.get('/plants/:id',(req,res)=>{
-    flowersandplants.findById(req.params.id)
+app.get('/mywebsite/homeutensils',(req,res)=>{
+    homeutensilsDB.find((err,data)=>{
+        if(err){
+            return res.status(500).send(err)
+        }
+        return res.status(200).send(data)
+    })
+})
+app.get('/mywebsite/:id',(req,res)=>{
+    completedata.findById(req.params.id)
     .then(
         val=> {
         if (!val){
@@ -88,11 +105,20 @@ app.get('/plants/:id',(req,res)=>{
     // JSON.parse(str)
     
 })
-
-app.post('/plants/flower',(req,res)=>{
-    const dbFlower=req.body
-    flowersDB.create(
-        dbFlower, (err,data)=>{
+//////////////////////////////////////////////////////////----POST---////////////////////////////////
+app.post('/mywebsite/banners',(req,res)=>{
+    const data=req.body;
+    bannersDB.create(data,(err,data)=>{
+        if(err){
+            return res.status(500).send(err)
+        }
+        return res.status(201).send(data)
+    })
+})
+app.post('/mywebsite/clothes',(req,res)=>{
+    const dbMywebsite=req.body
+    clothesDB.create(
+        dbMywebsite, (err,data)=>{
             console.log(err,".....",req.body,data)
             if(err){
                 res.status(500).send(err)
@@ -101,10 +127,10 @@ app.post('/plants/flower',(req,res)=>{
             }
         })
 })
-app.post('/plants/grass',(req,res)=>{
-    const dbFlower=req.body
-    grassDB.create(
-        dbFlower,(err,data)=>{
+app.post('/mywebsite/electronicdevices',(req,res)=>{
+    const dbMywebsite=req.body
+    electronicdevicesDB.create(
+        dbMywebsite,(err,data)=>{
             if(err){ 
                 res.status(500).send(err)
             }
@@ -114,9 +140,9 @@ app.post('/plants/grass',(req,res)=>{
         }
     )
 })
-app.post('/plants/insect',(req,res)=>{
-    const dbFlower=req.body
-    insectDB.create(dbFlower,(err,data)=>{
+app.post('/mywebsite/fruitsandvegies',(req,res)=>{
+    const dbMywebsite=req.body
+    fruitsandvegiesDB.create(dbMywebsite,(err,data)=>{
         if(err){
             res.status(500).send(err)
         }else{
@@ -124,18 +150,29 @@ app.post('/plants/insect',(req,res)=>{
         }
     })
 })
-app.post('/plants/animation',(req,res)=>{
-    const dbFlower=req.body 
-    animationDB.create(dbFlower,(err,data)=>{
+app.post('/mywebsite/groceries',(req,res)=>{
+    console.log("inside backend post call plants/animation",req.body);
+    const dbMywebsite=req.body 
+    groceriesDB.create(dbMywebsite,(err,data)=>{
         if(err){
-            res.status(500).send(data)
+            res.status(500).send(err)
         }else{
             res.status(201).send(data)
         }
     })    
 })
-app.post("/plants",(req,res)=>{
-    const dbFlower=req.body
+app.post('/mywebsite/homeutensils',(req,res)=>{
+    const dbMywebsite=req.body
+    homeutensilsDB.create(dbMywebsite,(err,data)=>{
+        if(err){
+            return res.status(500).send(err)
+        }
+        return res.status(201).send(data)
+    })
+
+})
+app.post("/mywebsite",(req,res)=>{
+    const dbMywebsite=req.body
     console.log("req body",req.body)
     let s1=joi.object().keys({
         name:joi.string().required(),
@@ -155,8 +192,8 @@ app.post("/plants",(req,res)=>{
     if(result.error){
         return res.status(500).send(result.error.details[0].message)
     }
-    flowersandplants.create(
-        dbFlower, (err,data)=>{
+    completedata.create(
+        dbMywebsite, (err,data)=>{
             console.log(err,'....',data)
             if(err){
                 res.status(500).send(err)
@@ -167,9 +204,9 @@ app.post("/plants",(req,res)=>{
 
 })
 
-app.delete('/plants',(req,res)=>{
-    console.log("flowersandplants...",req.flowersandplants)
-    flowersandplants.findOneAndDelete(req.params.name)
+app.delete('/mywebsite',(req,res)=>{
+    console.log("mywebsite...",req.flowersandplants)
+    completedata.findOneAndDelete(req.params.name)
     .exec()
     .then(doc=>{
         if(!doc){
@@ -180,9 +217,9 @@ app.delete('/plants',(req,res)=>{
     .catch(err=>console.log(err))
     //  flowersandplants==(req.params.name)
 })
-app.put('/plants/:id',(req,res)=>{
+app.put('/mywebsite/:id',(req,res)=>{
     
-    flowersandplants.findByIdAndUpdate(req.params.id)
+    completedata.findByIdAndUpdate(req.params.id)
     .then(val=>{
         const schema={
             name: joi.string().required(),
@@ -197,7 +234,7 @@ app.put('/plants/:id',(req,res)=>{
         console.log("hhhhh")
         val.save(function(err,updatedObject){
             if(err){
-                return res.status(500).send();
+                return res.status(500).send(err);
             }
             return res.status(201).send(val);
         })

@@ -3,11 +3,11 @@ import {useState,useEffect} from 'react';
 import { flowers , fetchApi } from '../redux/actions/Actions';
 import axios from 'axios';
 
-const SearchFlower =({data,fetchApi})=>{
+const SearchElectronicDevices =({data,fetchApi})=>{
     // const dispatch = useDispatch();
     // const state=useSelector(state=>state.reducer);
-    const [flowervar, setflowervar] = useState("");
-    const [flowerdes,setflowerdes]= useState("");
+    const [electronicdevicesvar, setelectronicdevicesvar] = useState("");
+    const [electronicdevicesdes,setelectronicdevicesdes]= useState("");
     useEffect(() => {
         console.log('useeffect in searchflower file')
         fetchApi()
@@ -16,16 +16,16 @@ const SearchFlower =({data,fetchApi})=>{
     
 
     const forName=(e)=>{
-        setflowervar(e.target.value);
+        setelectronicdevicesvar(e.target.value);
     }
     const forDescription=(e)=>{
-        setflowerdes(e.target.value);
+        setelectronicdevicesdes(e.target.value);
     }
     const onSubmitValue=(e)=>{
         e.preventDefault();
-        console.log(flowervar,flowerdes);
-        const aa = [{"name":flowervar, "about": flowerdes}]
-        axios.post('http://localhost:8001/plants/flower',aa)
+        console.log(electronicdevicesvar,electronicdevicesdes);
+        const aa = [{"name":electronicdevicesvar, "about": electronicdevicesdes}]
+        axios.post('http://localhost:8001/mywebsite/electronicdevices',aa)
         .then(res=>console.log(res,'axios post call res'))
         .catch(err=>console.log(err,"in axios post call"))
         // store in state management 
@@ -36,8 +36,8 @@ const SearchFlower =({data,fetchApi})=>{
     return (
         <div>
             <form  onSubmit={onSubmitValue}>
-                <input type="text " name="flower_name" onChange={forName}></input>
-                <input type="text" name="flower_description" onChange={forDescription}></input>
+                <input type="text " name="electronicdevices_name" onChange={forName}></input>
+                <input type="text" name="electronicdevices_description" onChange={forDescription}></input>
                 <button type="submit" > Submit </button>  
             </form>
             {data.state !=undefined ? data.state.data.map(a=>(<h4>{a.name}</h4>)):"undefined it is "}
@@ -56,7 +56,7 @@ const mapStateToProps =state=>{
 const  mapDispatchToProps =dispatch=>{
     console.log('map dispatch to props')
     return {
-        fetchApi:()=> dispatch(fetchApi("flower"))
+        fetchApi:()=> dispatch(fetchApi("electronicdevices"))
     }
 }
-export default connect (mapStateToProps,mapDispatchToProps) (SearchFlower);
+export default connect (mapStateToProps,mapDispatchToProps) (SearchElectronicDevices);

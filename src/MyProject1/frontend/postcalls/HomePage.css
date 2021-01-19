@@ -1,0 +1,14 @@
+body{
+    text-align: center;
+    
+}
+img.HomePage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 7px;
+    margin-block-end: 30px;
+}
+.Category{
+    padding: 4px;
+}
