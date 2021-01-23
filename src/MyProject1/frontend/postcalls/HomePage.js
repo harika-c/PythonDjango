@@ -18,9 +18,9 @@ const HomePage =({state,fetchApis})=>{
             <div className="category_banners">
                 
                 {
-                state.state!=undefined ?state.state.data.map(urls=>{
+                state.state!=undefined ?state.state.map(urls=>{
                     i=i+1;
-                    if(i==0 || i==state.state.data.length-1){
+                    if(i==0 || i==state.state.length-1){
                         return  <img src={urls.url} className="HomePage" alt="Category_img" width="1000" height="400"/>
                     }
                     return <img src={urls.url} className="Category" alt="Category_img" width="500" height="300"/>

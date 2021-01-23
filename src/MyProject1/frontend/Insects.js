@@ -1,4 +1,4 @@
-import SearchInsects from "./postcalls/SearchInsects"
+import SearchInsects from "./postcalls/SearchClothes"
 
 const Insects =()=>{
 

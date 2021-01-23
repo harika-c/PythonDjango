@@ -7,7 +7,7 @@
     
 }
 
-.nav__bar span{
+.nav__bar .category{
     flex-direction: row;
     padding : 8px;
     font-family:unset ;
@@ -17,4 +17,10 @@
 }
 .link{
     text-decoration: none;
+}
+.cart_count{
+    font-size: 15px;
+}
+.cart_icon{
+    float: right;
 }

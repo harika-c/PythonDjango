@@ -1,4 +1,4 @@
-import SearchFlower from './postcalls/SearchFlowers';
+import SearchFlower from './postcalls/SearchElectronicDevices';
 
 const Flowers =()=>{
 

@@ -41,7 +41,7 @@ app.get("/mywebsite",(req,res)=>{
         }
     })
 })
-app.get('/mywebsite/clothes',(req,res)=>{
+app.get('/mywebsite/clothes/womenswear',(req,res)=>{
     
     clothesDB.find((err,data)=>{
         console.log('...res...data..',data);
@@ -115,7 +115,7 @@ app.post('/mywebsite/banners',(req,res)=>{
         return res.status(201).send(data)
     })
 })
-app.post('/mywebsite/clothes',(req,res)=>{
+app.post('/mywebsite/clothes/womenswear',(req,res)=>{
     const dbMywebsite=req.body
     clothesDB.create(
         dbMywebsite, (err,data)=>{
@@ -216,6 +216,23 @@ app.delete('/mywebsite',(req,res)=>{
     })
     .catch(err=>console.log(err))
     //  flowersandplants==(req.params.name)
+})
+//////////////////////////////////////////////-----PUT------/////////////////////////////////////////
+app.put('/mywebsite/clothes/womenswear/:id',(req,res)=>{
+    clothesDB.findByIdAndUpdate(req.params.id)
+    .then(val=>{console.log('............',val,'data......................')
+        val.name=req.body.name
+        val.about=req.body.about
+        val.url=req.body.url
+        val.price=req.body.price    
+        val.save(function(err,updatedObject){
+            if(err){
+               return res.status(500).send(err)
+            }
+            return res.status(201).send(val)
+
+        })
+    })
 })
 app.put('/mywebsite/:id',(req,res)=>{
     

@@ -31,7 +31,20 @@ export const postCall=(aa)=>{
         payload : aa
     }
 }
-
+export const clothesCall=(aa)=>{
+    return {
+        type: "clothescall",
+        payload: aa
+    }
+}
+export const addToCartAction=(val,count)=>{
+    // console.log("action cart",val,count)
+    return {
+        type:"addtocart",
+        payload: val,
+        data: count
+    }
+}
 export const fetchApi=(data)=>{
     
     return (dispatch)=>{
@@ -40,12 +53,23 @@ export const fetchApi=(data)=>{
                 console.log("actions ",data)
                 axios.get("http://localhost:8001/mywebsite/"+data)
                 .then(res=>{
-                    console.log(res,"axios res...")
-                    dispatch(postCall(res));
+                    console.log(res.data,"axios res...")
+                    dispatch(postCall(res.data));
                 })
                 .catch(err=>console.log(err,'axios error...'))
             // case "gra":
 
         // }
+    }
+}
+export const fetchData=(data)=>{
+    return (dispatch)=>{
+        console.log("actions ",data);
+        axios.get("http://localhost:8001/mywebsite/clothes/"+data)
+        .then(res=>{
+            console.log(res.data,"axios res...");
+            dispatch(clothesCall(res.data))
+        })
+        .catch(err=> console.log(err,"axios clothes error reponse .."))    
     }
 }

@@ -5,22 +5,31 @@
 //     gras:[],
 //     anim:[]
 // }
-export const Reducer_Flower=(state=[]  , action)=>{
+const initialState={
+    banners:[],
+    clothes:[],
+    addToCart:{}
+}
+export const Reducer_Flower=(state=initialState  , action)=>{
     
     switch(action.type){
         case "POST": 
-        console.log(action.payload,".....reducer payload.......")
-            return {
+            console.log(action.payload,".....reducer payload.post......")
+
+            const val={
                 state: action.payload
             }
-        case "f1":
-            const data= { 
+            console.log('....',val)
+            return val;
+        case "clothescall":
+            console.log(action.payload,".....reducer payload clothes call.......")
+            const data2= { 
+                // ...state.state,
                  state : action.payload
             };
-            console.log(data.state[0].flower,".....data.......")
-            return data
+            return data2
             // return {...state1, flow: action.payload}
-            
+
         case "i1":
             console.log("insect reducer...///",state)
             return { 
@@ -30,15 +39,6 @@ export const Reducer_Flower=(state=[]  , action)=>{
             //     ...state, inse : state.inse.concat(action.payload)
             // };
             // return { inse : state.inse.concat(action.payload)};
-        case "g1":
-            return { 
-                    state : action.payload
-                // ...state,gras : state.gras.concat(action.payload)
-             };
-        case "a1":
-            return { 
-                state: action.payload
-            }
         default :
             return state
     }
