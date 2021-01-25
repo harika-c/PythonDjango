@@ -1,0 +1,24 @@
+.cart_container{
+   font-weight: bold;
+}
+.cart_items_images{
+    float: left;
+    display: inline-block;
+    
+}
+.aa{
+    display: block;
+}
+/* .cart_items_prices{
+    float: right;
+}
+
+.cart_sub_container{
+    background-color:lightgoldenrodyellow;
+    
+}
+
+.cart_items_images{
+    position: absolute;
+    display: block;
+} */

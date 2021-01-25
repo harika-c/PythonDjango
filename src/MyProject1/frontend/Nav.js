@@ -48,12 +48,13 @@ export const Nav=()=>{
                     <Link to="/cart" className="link">
                         <span className="cart_icon">
                             
-                            {/* <span className="cart_count">
+                            <span className="cart_count">
                                 <ShoppingCartIcon/>
-                                {atc.state !=undefined? atc.state: "0"}
-                            </span> */}
+                                {atc.length}
+                            </span>
                         </span>
                     </Link>
+                    
                 </nav>
             </div>
         </div>

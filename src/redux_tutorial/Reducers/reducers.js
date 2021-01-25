@@ -3,10 +3,10 @@ import {initialiseState} from '../state';
 var lastId=0;
 export default function reducers(state=[],actions){
     if(actions.type=="bugs"){
-        console.log("reducer bugs")
+        console.log("reducer",state)
         return [ ...state, 
         {
-            id: ++lastId,
+            
             description: {
                 data: actions.payload
             }

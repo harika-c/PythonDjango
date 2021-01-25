@@ -12,7 +12,8 @@ import { BrowserRouter as Router ,Route, Switch} from 'react-router-dom';
 import {applyMiddleware, createStore } from 'redux';
 import {Provider, useSelector,connect} from 'react-redux';
 import Multiple_Reducer from './redux/reducers/Multiple_Reducer';
-
+import CartPage from './postcalls/CartPage';
+import CheckoutPage from './postcalls/CheckoutPage';
 const store=createStore(Multiple_Reducer,applyMiddleware(thunk));
 
 function App(){
@@ -29,6 +30,8 @@ function App(){
                         <Route path='/groceries' component={SearchGroceries}/>
                         <Route path='/fruitsandvegs' component={SearchFruitsVegetables}/>
                         <Route path='/homeutensils' component={SearchHomeUtensils}/>
+                        <Route path='/cart' component={CartPage}/>
+                        <Route path='/checkout' component={CheckoutPage}/>
                     </Switch>
                 </Router>
             </div>

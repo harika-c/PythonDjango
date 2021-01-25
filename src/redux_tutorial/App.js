@@ -10,6 +10,7 @@ store.dispatch({
     payload : "hello bugs"
 
 })
+console.log('...............')
 store.dispatch({
     type: "bugs",
     payload : "bugs2"
@@ -23,7 +24,7 @@ store.dispatch({
 function App(){
     return(
         <div>
-            {console.log(store.getState().redu)}
+            {console.log(store.getState())}
             {store.getState().redu.map(a=>(<div>{a.description.data}</div>))}
             </div>
     )
