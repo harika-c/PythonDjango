@@ -1,8 +1,9 @@
 
-export const Reducer=(state=[],action)=>{
+export const Reducers=(state=[],action)=>{
 
-    switch(actions.type){
+    switch(action.type){
         case "filter":
+            console.log('...reducer',action.payload)
             return {
                 state: action.payload
             }

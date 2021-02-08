@@ -4,10 +4,12 @@ import AddDataPage from './frontend/AddDataPage';
 import Edit from './frontend/Edit';
 import A from './frontend/A';
 import { BrowserRouter as Router ,Route, Switch} from 'react-router-dom';
+import store from './redux/Store';
+import {Provider} from 'react-redux';
 
 function App() {
   return (
-    
+    <Provider store={store}>
       <div className="App">
         <header>
           
@@ -28,6 +30,7 @@ function App() {
         
       </div>
     </div>
+    </Provider>
   );
 }
 
