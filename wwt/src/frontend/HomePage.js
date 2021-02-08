@@ -13,12 +13,16 @@ const HomePage=()=>{
     const state = useSelector(state => state.reducer)
     const [q, setq] = useState("")
     var [val,setval]=useState([])
+    var [fulldata,setfulldata]=useState([])
     useEffect(() => {
         console.log('use effect')
         
         // dispatch(apiFilter())
         axios.get(BACKENDSERVER+"/contact_data")
-        .then(res=>setval(res.data))
+        .then(res=>{
+            setval(res.data)
+            setfulldata(res.data)
+        })
         .catch(err=>console.log(err))
         
     }, [])
@@ -59,13 +63,13 @@ const HomePage=()=>{
         //     })} else{console.log("undefined data")}
         console.log(val,';;;;;;;;;;;;;')
         const recover=val;
-         setval(val.filter(name=>{
+         setval(fulldata.filter(name=>{
              console.log(name.name.indexOf(v))
             return   name.name.indexOf(v) >=0 
             // console.log((state.state).toLowerCase(v))
         }))
     }else{
-        // setData([])
+        setval(fulldata)
     }
     }
     return(
