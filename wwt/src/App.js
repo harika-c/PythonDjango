@@ -20,8 +20,9 @@ function App() {
           <AddDataPage/>
         </div>
         
-        <HomePage/>
+        
         <Router>
+          <HomePage/>
           <Switch>
             <Route path="/kl" component={A}/>
           </Switch>

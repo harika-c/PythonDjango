@@ -37,40 +37,35 @@ const HomePage=()=>{
         .then(res=>console.log('axios get',res.data))
         .catch(err=>console.log(err))
     }
-    const history=useHistory();
-    const onEdit =(data)=>{
-        console.log(data,'///')
-        let path=`/kl`
-            history.push(path)
-        
-        axios.put(BACKENDSERVER+"/contact_data")
-        .then(res=>console.log('axios get',res.data))
-        .catch(err=>console.log(err))
-    }
+    
     const funct1=(e)=>{
         
         const v=e.target.value;
         console.log('..val.',v)
        if(v!=""){
-        // if(state.state!=undefined){ 
-        //     state.state.map(a=>{
-        //     console.log('....///defined//.........',a)
-        //     if(((a.name !=undefined? a.name: "").includes(val))){
-        //         ||((a.role).includes(val))||(a.phones==val)||(a.email==val)||(a.address==val)
-        //         console.log('...prevstate...',a)
-        //         setval(prevState=>({...prevState,data:a}))
-        //         }
-        //     })} else{console.log("undefined data")}
+        
         console.log(val,';;;;;;;;;;;;;')
-        const recover=val;
+        
          setval(fulldata.filter(name=>{
              console.log(name.name.indexOf(v))
-            return   name.name.indexOf(v) >=0 
-            // console.log((state.state).toLowerCase(v))
+            return   name.name.toLowerCase().indexOf(v.toLowerCase()) >=0 || 
+                    name.role.toLowerCase().indexOf(v.toLowerCase()) >=0 ||
+                    name.phones.toLowerCase().indexOf(v.toLowerCase()) >=0 ||
+                    name.address.toLowerCase().indexOf(v.toLowerCase()) >=0 ||
+                    name.email.toLowerCase().indexOf(v.toLowerCase()) >=0 
+                    
         }))
     }else{
         setval(fulldata)
     }
+    }
+    const history=useHistory();
+    const onEdit =(data)=>{
+       
+        
+        axios.put(BACKENDSERVER+"/contact_data")
+        .then(res=>console.log('axios get',res.data))
+        .catch(err=>console.log(err))
     }
     return(
         
@@ -95,7 +90,7 @@ const HomePage=()=>{
                                                 
                             <button onClick={()=>onDelete(d._id)} class="card-link">Delete</button>
                             
-                            <button onClick={()=>onEdit()} class="card-link">Edit</button>
+                            <button onClick={()=>onEdit(d)} class="card-link">Edit</button>
                         </div>
                     </div>
             ):"no data"}
