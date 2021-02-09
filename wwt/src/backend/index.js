@@ -21,7 +21,7 @@ mongoose.connect(connection_url,{
 })
 mongoose.set('useFindAndModify', false);
 app.get('/contact_data',(req,res)=>{
-    console.log('get call',req,res)
+    
     wwtSearchDB.find((err,data)=>{
         if(err){
             res.status(500).send(err)
@@ -32,7 +32,7 @@ app.get('/contact_data',(req,res)=>{
 })
 app.post('/contact_data',(req,res)=>{
     const data=req.body
-    console.log('........post....req.body.....',data)
+  
     wwtSearchDB.create(data,(err,data)=>{
         if(err){
             res.status(500).send(err)
@@ -41,12 +41,27 @@ app.post('/contact_data',(req,res)=>{
         }
     })
 })
-app.put('/contact_data',(req,res)=>{
-
+app.put('/contact_data/:_id',(req,res)=>{
+    console.log('id------',req.params._id)
+    wwtSearchDB.findByIdAndUpdate(req.params._id)
+    .then(val=>{
+    val.role=req.body.role
+    val.name=req.body.name
+    val.address=req.body.address
+    val.phones=req.body.phones
+    val.email=req.body.email
+    val.save(function(err,updatedObject){
+        if(err){
+           return res.status(500).send(err)
+        }else{
+        return res.status(201).send(val)
+        }
+    })
+})
 })
 
 app.delete('/contact_data/:_id',(req,res)=>{
-    console.log('id--------',req.params._id)
+   
     wwtSearchDB.findByIdAndRemove(req.params._id,(err,data)=>{
         if(err){
             res.status(204).send(err)

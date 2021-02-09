@@ -2,7 +2,7 @@ import './App.css';
 import HomePage from './frontend/HomePage';
 import AddDataPage from './frontend/AddDataPage';
 import Edit from './frontend/Edit';
-import A from './frontend/A';
+
 import { BrowserRouter as Router ,Route, Switch} from 'react-router-dom';
 import store from './redux/Store';
 import {Provider} from 'react-redux';
@@ -20,14 +20,7 @@ function App() {
           <AddDataPage/>
         </div>
         
-        
-        <Router>
-          <HomePage/>
-          <Switch>
-            <Route path="/kl" component={A}/>
-          </Switch>
-
-        </Router>
+        <HomePage/>
         
       </div>
     </div>

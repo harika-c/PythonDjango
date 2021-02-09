@@ -14,6 +14,7 @@ const HomePage=()=>{
     const [q, setq] = useState("")
     var [val,setval]=useState([])
     var [fulldata,setfulldata]=useState([])
+    var [edit,setedit]=useState({isShow: false})
     useEffect(() => {
         console.log('use effect')
         
@@ -62,10 +63,9 @@ const HomePage=()=>{
     const history=useHistory();
     const onEdit =(data)=>{
        
+       setedit({isShow: !edit.isShow,data})
+
         
-        axios.put(BACKENDSERVER+"/contact_data")
-        .then(res=>console.log('axios get',res.data))
-        .catch(err=>console.log(err))
     }
     return(
         
@@ -91,9 +91,11 @@ const HomePage=()=>{
                             <button onClick={()=>onDelete(d._id)} class="card-link">Delete</button>
                             
                             <button onClick={()=>onEdit(d)} class="card-link">Edit</button>
+                            
                         </div>
                     </div>
             ):"no data"}
+            {edit.isShow ? <Edit greeting={edit} /> : null}
         </div>
         
     )
