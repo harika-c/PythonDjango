@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {useState, useEffect } from 'react';
-import {fetchApi} from '../redux/actions/Actions';
+import {fetchApi} from '../redux/Actions';
 import {connect} from 'react-redux';
 
 import ClothesNavigation from '../ClothesSubCategory/ClothesNavigation';
@@ -49,8 +49,9 @@ const SearchClothes=({state,fetchApis})=>{
                     <Route path="/accessories" component={Accessories} />
                     <Route path="/cart" component={CartPage}/>
                 </Switch>
+                
             </Router>
-            
+           
         </div>
     )
 

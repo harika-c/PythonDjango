@@ -1,6 +1,6 @@
 import {useDispatch , useSelector ,connect} from 'react-redux';
 import {useState,useEffect} from 'react';
-import { flowers , fetchApi } from '../redux/actions/Actions';
+import { flowers , fetchApi } from '../redux/Actions';
 import axios from 'axios';
 
 const SearchElectronicDevices =({data,fetchApi})=>{

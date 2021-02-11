@@ -33,6 +33,7 @@ const CartPage=()=>{
         if(priceval==0){
             document.getElementById('proceedtopay_button').disabled=true
         }
+        
     },[])
     return (
         <div className="cart_container">

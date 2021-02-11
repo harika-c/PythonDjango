@@ -22,23 +22,35 @@ export const Reducer_Flower=(state=initialState  , action)=>{
             console.log('....',val)
             return val;
         case "clothescall":
-            console.log(action.payload,".....reducer payload clothes call.......")
-            const data2= { 
-                // ...state.state,
+            
+            const d= { 
+                // ...state,
                  state : action.payload
             };
+            console.log(action.payload,".....reducer payload womens call.......",d)
+            return d
+        case "womenswear":
+            
+            const data2= { 
+                // ...state,
+                 state : action.payload
+            };
+            console.log(action.payload,".....reducer payload womens call.......",data2)
             return data2
-            // return {...state1, flow: action.payload}
-
-        case "i1":
-            console.log("insect reducer...///",state)
+        case "menswear":
+            
+            const data= { 
+                // ...state,
+                    state : action.payload
+            };
+            console.log(action.payload,".....reducer payload mens call.......",data)
+            return data
+        
+        case "None":
+            console.log("None reducer...///",state)
             return { 
                 state : action.payload
            };
-            // return { 
-            //     ...state, inse : state.inse.concat(action.payload)
-            // };
-            // return { inse : state.inse.concat(action.payload)};
         default :
             return state
     }

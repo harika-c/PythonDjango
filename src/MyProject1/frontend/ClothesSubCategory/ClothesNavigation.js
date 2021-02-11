@@ -4,16 +4,16 @@ const ClothesNavigation=()=>{
     return(
         <ul class="nav flex-column" style={{listStyleType: "none" }}>
             <li class="nav-item">
-                <Link to="/womenswear" class="nav-link">Women's Wear</Link>
+                <Link to="/womenswear"   style={{textDecoration: "None"}} class="nav-link">Women's Wear</Link>
             </li>
             <li class="nav-item">
-                <Link to="/menswear" class="nav-link">Men's Wear</Link>
+                <Link to="/menswear" style={{textDecoration: "None"}} class="nav-link">Men's Wear</Link>
             </li>
             <li class="nav-item">
-                <Link to="/kidswear" class="nav-link">Kids Wear</Link>
+                <Link to="/kidswear" style={{textDecoration: "None"}} class="nav-link">Kids Wear</Link>
             </li>
             <li class="nav-item">
-                <Link to="/accessories" class="nav-link">Accessories</Link>
+                <Link to="/accessories" style={{textDecoration: "None"}} class="nav-link">Accessories</Link>
             </li>
         </ul>
     )

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import  {useState,useEffect} from 'react';
-import {fetchApi} from '../redux/actions/Actions';
+import {fetchApi} from '../redux/Actions';
 
 const SearchHomeUtensils=({state,fetchApis})=>{
     const [homeutensilsname, sethomeutensilsname] = useState()

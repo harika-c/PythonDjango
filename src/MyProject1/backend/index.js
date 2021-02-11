@@ -1,7 +1,7 @@
 import  mongoose from  'mongoose';
 import express from 'express';
 import completedata from './completeDataSchema.js';
-import {clothesDB, electronicdevicesDB , fruitsandvegiesDB,groceriesDB,homeutensilsDB} from './categorywiseSchema.js';
+import {loginDB,signupDB,womensWearDB, electronicdevicesDB , fruitsandvegiesDB,groceriesDB,homeutensilsDB, mensWearDB, kidsWearDB, accessoriesDB} from './categorywiseSchema.js';
 import bannersDB from './bannersSchema.js';
 
 import joi from 'joi';
@@ -27,60 +27,46 @@ mongoose.connect(connection_url,{
 app.get('/mywebsite/banners',(req,res)=>{
     bannersDB.find((err,data)=>{
         if(err){
+             res.status(500).send(err)
+        }else{
+            res.status(200).send(data)
+        }
+         
+    })
+})
+
+app.get('/mywebsite/clothes/womenswear',(req,res)=>{
+    
+    womensWearDB.find((err,data)=>{
+        console.log('...res...data..',data);
+        if(err){
+             res.status(500).send(err)
+        }
+        else{ res.status(200).send(data)
+        }
+        
+    })
+})
+app.get('/mywebsite/clothes/menswear',(req,res)=>{
+    mensWearDB.find((err,data)=>{
+        console.log('...res...data..',data);
+        if(err){
+            res.status(500).send(err)
+       }
+       else{ res.status(200).send(data)
+       }
+    })
+})
+app.get('/mywebsite/clothes/kidswear',(req,res)=>{
+    kidsWearDB.find((err,data)=>{
+        if(err){
             return res.status(500).send(err)
         }
         return res.status(200).send(data)
     })
 })
-app.get("/mywebsite",(req,res)=>{
-    completedata.find((err,data)=>{
-        if(err){
-            res.status(500).send(err)
-        }else{
-            res.status(200).send(data)
-        }
-    })
-})
-app.get('/mywebsite/clothes/womenswear',(req,res)=>{
-    
-    clothesDB.find((err,data)=>{
-        console.log('...res...data..',data);
-        if(err){
-            res.status(500).send(err)
-        }else{
-            res.status(200).send(data)
-        }
-    })
-})
-app.get('/mywebsite/electronicdevices',(req,res)=>{
-    electronicdevicesDB.find((err,data)=>{
-        if(err){
-            res.status(500).send(err)
-        }else{
-            res.status(200).send(data)
-        }
-    })
-})
-app.get('/mywebsite/fruitsandvegies',(req,res)=>{
-    fruitsandvegiesDB.find((err,data)=>{
-        if(err){
-            res.status(500).send(err)
-        }else {
-            res.status(200).send(data)
-        }
-    })
-})
-app.get('/mywebsite/groceries',(req,res)=>{
-    groceriesDB.find((err,data)=>{
-        if(err){
-            res.status(500).send(err)
-        }else{
-            res.status(200).send(data)
-        }
-    })  
-})
-app.get('/mywebsite/homeutensils',(req,res)=>{
-    homeutensilsDB.find((err,data)=>{
+app.get('/mywebsite/clothes/accessories',(req,res)=>{
+    accessoriesDB.find((err,data)=>{
         if(err){
             return res.status(500).send(err)
         }
@@ -106,6 +92,27 @@ app.get('/mywebsite/:id',(req,res)=>{
     
 })
 //////////////////////////////////////////////////////////----POST---////////////////////////////////
+app.post('/mywebsite/signup',(req,res)=>{
+    const data =req.body;
+    signupDB.create(data,(err,data)=>{
+        if(err){
+            res.status(500).send(err)
+        }else{
+            res.status(201).send(data)
+        }
+    })
+})
+app.post('/mywebsite/login',(req,res)=>{
+    const data=req.body;
+    loginDB.create(data,(err,data)=>{
+        if(err){
+            res.status(500).send(err)
+        }
+        else{
+            res.status(201).send(data)
+        }
+    })
+})
 app.post('/mywebsite/banners',(req,res)=>{
     const data=req.body;
     bannersDB.create(data,(err,data)=>{
@@ -117,7 +124,7 @@ app.post('/mywebsite/banners',(req,res)=>{
 })
 app.post('/mywebsite/clothes/womenswear',(req,res)=>{
     const dbMywebsite=req.body
-    clothesDB.create(
+    womensWearDB.create(
         dbMywebsite, (err,data)=>{
             console.log(err,".....",req.body,data)
             if(err){
@@ -126,6 +133,37 @@ app.post('/mywebsite/clothes/womenswear',(req,res)=>{
                 res.status(201).send(data)
             }
         })
+})
+app.post('/mywebsite/clothes/menswear',(req,res)=>{
+    const db=req.body
+    mensWearDB.create(
+        db,(err,data)=>{
+            if(err){
+                return res.status(500).send(err)
+            }
+            return res.status(200).send(data)
+        }
+    )
+})
+app.post('/mywebsite/clothes/kidswear',(req,res)=>{
+    const db=req.body
+    kidsWearDB.create(
+        db,(err,data)=>{
+            if(err){
+                return  res.status(500).send(err)
+            }
+            return res.status(200).send(data)
+        }
+    )
+})
+app.post('/mywebsite/clothes/accessories',(req,res)=>{
+    const db=req.body
+    accessoriesDB.create(db,(err,data)=>{
+        if(err){
+            return res.status(500).send(err)
+        }
+        return res.status(200).send(data)
+    })
 })
 app.post('/mywebsite/electronicdevices',(req,res)=>{
     const dbMywebsite=req.body
@@ -219,7 +257,7 @@ app.delete('/mywebsite',(req,res)=>{
 })
 //////////////////////////////////////////////-----PUT------/////////////////////////////////////////
 app.put('/mywebsite/clothes/womenswear/:id',(req,res)=>{
-    clothesDB.findByIdAndUpdate(req.params.id)
+    womensWearDB.findByIdAndUpdate(req.params.id)
     .then(val=>{console.log('............',val,'data......................')
         val.name=req.body.name
         val.about=req.body.about

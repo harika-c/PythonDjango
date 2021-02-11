@@ -6,24 +6,26 @@ import SearchFruitsVegetables from './postcalls/SearchFruitsVegetables';
 import SearchHomeUtensils from './postcalls/SearchHomeUtensils';
 import SearchGroceries from './postcalls/SearchGroceries';
 import HomePage from './postcalls/HomePage';
+import Login from './login/Login';
+import SignUp from './login/SignUp';
 
-import thunk from 'redux-thunk';
 import { BrowserRouter as Router ,Route, Switch} from 'react-router-dom';
-import {applyMiddleware, createStore } from 'redux';
 import {Provider, useSelector,connect} from 'react-redux';
-import Multiple_Reducer from './redux/reducers/Multiple_Reducer';
 import CartPage from './postcalls/CartPage';
 import CheckoutPage from './postcalls/CheckoutPage';
-const store=createStore(Multiple_Reducer,applyMiddleware(thunk));
+import store from './Store';
+
 
 function App(){
     
     return(
         <Provider store={store}>
             <div>
+                
                 <Router>
                     <Nav/>
                     <Switch>
+                    
                         <Route path="/" exact  component={HomePage}/>
                         <Route path="/clothes" component={SearchClothes}/>
                         <Route path="/electronics" component={SearchElectronicDevices}/>
@@ -32,6 +34,9 @@ function App(){
                         <Route path='/homeutensils' component={SearchHomeUtensils}/>
                         <Route path='/cart' component={CartPage}/>
                         <Route path='/checkout' component={CheckoutPage}/>
+                        <Route path="/login" component={Login}/>
+                        <Route path="/signup" component={SignUp}/>
+
                     </Switch>
                 </Router>
             </div>

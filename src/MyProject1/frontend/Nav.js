@@ -45,6 +45,7 @@ export const Nav=()=>{
                             Home Utencils
                         </span>
                     </Link>
+                    
                     <Link to="/cart" className="link">
                         <span className="cart_icon">
                             
@@ -54,7 +55,16 @@ export const Nav=()=>{
                             </span>
                         </span>
                     </Link>
-                    
+                    <Link to="/login" className="link">
+                        <span className="login_or_signup">
+                            Login
+                        </span>
+                    </Link>
+                    <Link to="/signup" className="link">
+                        <span className="login_or_signup">
+                            Signup
+                        </span>
+                    </Link>
                 </nav>
             </div>
         </div>

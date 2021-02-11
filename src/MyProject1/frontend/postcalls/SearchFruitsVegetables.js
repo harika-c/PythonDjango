@@ -1,4 +1,4 @@
-import {animations,fetchApi} from '../redux/actions/Actions';
+import {animations,fetchApi} from '../redux/Actions';
 import {useState,useEffect } from 'react';
 import {connect, useDispatch , useSelector} from 'react-redux';
 import axios from 'axios';

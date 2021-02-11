@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import {fetchData, addToCartAction} from '../redux/actions/Actions';
+import {fetchData, addToCartAction,fetchNone} from '../redux/Actions';
 import {useDispatch, useSelector} from 'react-redux';
 import './WomensWear.css';
 
@@ -8,23 +8,30 @@ const WomensWear=()=>{
    
     const dispatch = useDispatch()
     const state = useSelector(state => state.reducer)
-    
+    const atc=useSelector(state=>state.cartreducer)
+
     useEffect(() => {
         console.log('womens wear useeffect')
         dispatch(fetchData("womenswear"));
+        return()=>{
+            console.log("womens wear unmount")
+            dispatch(fetchNone());
+        }
     }, [])
     const addToCartMethod=(data)=>{
-        var count=1
-        console.log("add to cart method to push an anction ")
+        console.log("add to cart method to push an anction ",data )
         
-        dispatch(addToCartAction(data,count))
+        dispatch(addToCartAction(data))
+        // console.log('....////............',!localStorage.getItem('ccart'))
+         
         
     }   
     
     return (
         <div>
             {console.log('womens wear return ',state)}
-            {state.state!=undefined? 
+            
+            {state.state!=""? 
                 state.state.map(
                     data=><div class="row"> 
                                 <div class="column" >
@@ -36,7 +43,7 @@ const WomensWear=()=>{
                                     
                                 </div>
                             </div>
-                ): "no data"}
+                ): ""}
                 {console.log('woemns wear... nav............',state)}
         </div>
     )

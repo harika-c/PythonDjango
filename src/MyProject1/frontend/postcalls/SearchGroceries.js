@@ -1,6 +1,6 @@
 import {useDispatch ,useSelector} from 'react-redux';
 import {useState , useEffect} from 'react';
-import {fetchApi} from '../redux/actions/Actions'
+import {fetchApi} from '../redux/Actions'
 import {connect} from  'react-redux';
 import axios from 'axios';
 
