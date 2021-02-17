@@ -4,7 +4,8 @@ export const CartReducer=(state=[],action)=>{
     switch(action.type){
         case "addtocart":
             var atc=[] 
-            console.log('atc reducer',atc)
+            // var cool=[...state]
+            // console.log('atc reducer',state)
             
             atc=[...state,
                action.payload,

@@ -10,7 +10,7 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
-button {
+.submit_buttons , .notification{
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
@@ -18,8 +18,16 @@ button {
   border: none;
   cursor: pointer;
   width: 20%;
+  
 }
-
+.toast_message{
+  background-color: grey;
+  color: aliceblue;
+  top:0%;
+  left: 40%;
+  position: fixed;
+  padding: 20px;
+}
 button:hover {
   opacity: 0.8;
 }

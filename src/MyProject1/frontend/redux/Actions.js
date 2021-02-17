@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BACKEND_SERVER } from "../../Config";
 
 
 export const postCall=(aa)=>{
@@ -38,7 +39,7 @@ export const fetchApi=(data)=>{
         // switch(){
         //     case "flo":
                 console.log("actions ",data)
-                axios.get("http://localhost:8001/mywebsite/"+data)
+                axios.get(BACKEND_SERVER+"mywebsite/"+data)
                 .then(res=>{
                     console.log(res.data,"axios res...")
                     dispatch(postCall(res.data));
@@ -52,7 +53,7 @@ export const fetchApi=(data)=>{
 export const fetchData=(data)=>{
     return (dispatch)=>{
         console.log("actions ",data);
-        axios.get("http://localhost:8001/mywebsite/clothes/"+data)
+        axios.get(BACKEND_SERVER+"mywebsite/clothes/"+data)
         .then(res=>{
             console.log(res.data,"axios res...");
             
@@ -65,6 +66,13 @@ export const fetchData=(data)=>{
 export const fetchNone=()=>{
     return {
         type:"None",
-        payload: ""
+        
+    }
+}
+export const login=(userData)=>{
+    console.log('login actions')
+    return {
+        type: "login",
+        payload : userData
     }
 }

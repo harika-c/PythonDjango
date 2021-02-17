@@ -2,8 +2,12 @@
 import mongoose from 'mongoose';
 const signupSchema=mongoose.Schema(
    [{
-      username: String ,
-      password: String
+      firstname: String ,
+      password: String ,
+      confirmpassword: String ,
+      emailid : String  ,
+      lastname : String ,
+      mobilenumber: String
    }]
 )
 const loginSchema=mongoose.Schema(

@@ -5,12 +5,8 @@
 //     gras:[],
 //     anim:[]
 // }
-const initialState={
-    banners:[],
-    clothes:[],
-    addToCart:{}
-}
-export const Reducer_Flower=(state=initialState  , action)=>{
+
+export const Reducer_Flower=(state={} , action)=>{
     
     switch(action.type){
         case "POST": 
@@ -49,8 +45,10 @@ export const Reducer_Flower=(state=initialState  , action)=>{
         case "None":
             console.log("None reducer...///",state)
             return { 
-                state : action.payload
+                state : undefined
            };
+        
+
         default :
             return state
     }

@@ -94,24 +94,40 @@ app.get('/mywebsite/:id',(req,res)=>{
 //////////////////////////////////////////////////////////----POST---////////////////////////////////
 app.post('/mywebsite/signup',(req,res)=>{
     const data =req.body;
-    signupDB.create(data,(err,data)=>{
+    console.log('??????????????????????????',data,'...',data.emailid)
+    signupDB.findOne({emailid:data.emailid},(err,existingUser)=>{
+        console.log('inside...............',existingUser)
         if(err){
             res.status(500).send(err)
-        }else{
-            res.status(201).send(data)
-        }
+        }else if (existingUser==null){
+            signupDB.create(data,(err,data)=>{
+                if(err){
+                    res.status(500).send(err)
+                }else{
+                    res.status(201).send(data)
+                }
+            })
+        } 
+        else{
+             res.send("user already exists")   
+          }
     })
+    
 })
 app.post('/mywebsite/login',(req,res)=>{
     const data=req.body;
-    loginDB.create(data,(err,data)=>{
-        if(err){
-            res.status(500).send(err)
-        }
-        else{
-            res.status(201).send(data)
+    console.log('req.bosy.....',req.body)
+    signupDB.findOne({emailid:req.body.username,password:req.body.password},(err,existingUser)=>{
+        console.log("llllll",existingUser)
+        if(existingUser==null){
+            res.send("Invalid userId / password")
+        }else{
+            console.log('inside.....',existingUser)
+            res.status(200).send(existingUser)
+            
         }
     })
+
 })
 app.post('/mywebsite/banners',(req,res)=>{
     const data=req.body;
