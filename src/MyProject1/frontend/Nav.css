@@ -31,7 +31,8 @@
     font-weight: 500;
     
 }
-button#dropdown-basic {
+button#dropdown-basic span {
     font-weight: bold;
     font-size: 15px;
+    vertical-align: middle;
 }

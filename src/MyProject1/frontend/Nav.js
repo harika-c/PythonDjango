@@ -16,10 +16,11 @@ import Favourites from './login/Favourites';
 export const Nav=()=>{
     const atc = useSelector(state => state.cartreducer)
     const loggedin_reducer = useSelector(state => state.loggedin_reducer)
-    const username = loggedin_reducer.state.firstname;
+
     const myaccount_urls=[{ name: "My Profile", url: "/myprofile"},
                         {name: "Saved Address" , url: "/savedaddress"},
-                        {name: "Change Password" , url : "/changepassword"}
+                        {name: "Change Password" , url : "/changepassword"},
+                        {name: "Favourites" , url : "/favourites"}
     ]
     const navigation_urls=[{name: "Home" , url : "/"},
                             {name: "Clothes"   ,url : "/clothes"},
@@ -56,9 +57,11 @@ export const Nav=()=>{
                      <React.Fragment>
                         <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic" className="login_or_signup">
-                                <PersonIcon/> 
                                 <span>
-                                    Hello {username} 
+                                    <PersonIcon/> 
+                                </span>
+                                <span>
+                                    Hello {loggedin_reducer.state.firstname} 
                                 </span>
                             </Dropdown.Toggle>
                         
@@ -70,7 +73,11 @@ export const Nav=()=>{
                                         </div>
                                     </Link> )}
                                 </Dropdown.Item>
-                                
+                                <Dropdown.Item>
+                                    <Logout onClick={loggedin_reducer}>
+                                        Logout
+                                    </Logout>
+                                </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </React.Fragment>

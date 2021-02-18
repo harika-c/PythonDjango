@@ -14,6 +14,10 @@ import {Provider, useSelector,connect} from 'react-redux';
 import CartPage from './postcalls/CartPage';
 import CheckoutPage from './postcalls/CheckoutPage';
 import store from './Store';
+import MyProfile from './login/MyProfile';
+import Favourites from './login/Favourites';
+import SavedAddress from './login/SavedAddress';
+import ChangePassword from './login/ChangePassword';
 
 
 function App(){
@@ -36,7 +40,10 @@ function App(){
                         <Route path='/checkout' component={CheckoutPage}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/signup" component={SignUp}/>
-
+                        <Route path='/myprofile' component={MyProfile}/>
+                        <Route path='/savedaddress' component={SavedAddress}/>
+                        <Route path='/changepassword' component={ChangePassword}/>
+                        <Route path='/favourites' component={Favourites}/>
                     </Switch>
                 </Router>
             </div>

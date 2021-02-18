@@ -5,6 +5,10 @@ export const  LoggedInUser_Reducer=(state={},action)=>{
                 state: action.payload,
                 isLoggedIn : true
             }
+        case "logout":
+            return {
+                state : undefined
+            }
         default :
             return state
     }

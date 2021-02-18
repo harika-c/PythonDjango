@@ -69,6 +69,11 @@ export const fetchNone=()=>{
         
     }
 }
+export const logout=()=>{
+    return {
+        type: "logout"
+    }
+}
 export const login=(userData)=>{
     console.log('login actions')
     return {
