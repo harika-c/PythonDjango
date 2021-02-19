@@ -1,12 +1,15 @@
 import  mongoose from  'mongoose';
 import express from 'express';
+import crypto from 'crypto';
+import joi from 'joi';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+
 import completedata from './completeDataSchema.js';
 import {loginDB,signupDB,womensWearDB, electronicdevicesDB , fruitsandvegiesDB,groceriesDB,homeutensilsDB, mensWearDB, kidsWearDB, accessoriesDB} from './categorywiseSchema.js';
 import bannersDB from './bannersSchema.js';
 
-import joi from 'joi';
-import cors from 'cors';
-import bodyParser from 'body-parser';
+
 
 
 const app=express();
@@ -93,19 +96,22 @@ app.get('/mywebsite/:id',(req,res)=>{
 })
 //////////////////////////////////////////////////////////----POST---////////////////////////////////
 app.post('/mywebsite/signup',(req,res)=>{
-    const data =req.body;
-    console.log('??????????????????????????',data,'...',data.emailid)
+    var data =req.body;
+    // const id= crypto.randomBytes(16).toString("hex"); // user id code
+
+    console.log('??????????????????????????',data,'...',data.emailid,',,')
     signupDB.findOne({emailid:data.emailid},(err,existingUser)=>{
         console.log('inside...............',existingUser)
         if(err){
             res.status(500).send(err)
         }else if (existingUser==null){
+            // data.userid=id   // userid code 
             signupDB.create(data,(err,data)=>{
                 if(err){
                     res.status(500).send(err)
-                }else{
-                    res.status(201).send(data)
                 }
+                console.log('.data....',data,';;;',data.userid)
+                res.status(201).send(data)
             })
         } 
         else{

@@ -5,8 +5,10 @@ export const CartReducer=(state=[],action)=>{
         case "addtocart":
             var atc=[] 
             // var cool=[...state]
-            // console.log('atc reducer',state)
-            
+            console.log('atc reducer',state,Object.keys(state).length)
+            if(Object.keys(state).length===0){
+                return [action.payload]
+            }
             atc=[...state,
                action.payload,
                 ]
@@ -17,6 +19,8 @@ export const CartReducer=(state=[],action)=>{
             return{
                 state:  action.payload,
             }
+        case "clearcart":
+            return {}
          default:
              return state;   
     }

@@ -7,7 +7,8 @@ const signupSchema=mongoose.Schema(
       confirmpassword: String ,
       emailid : String  ,
       lastname : String ,
-      mobilenumber: String
+      mobilenumber: String,
+      userid: String
    }]
 )
 const loginSchema=mongoose.Schema(

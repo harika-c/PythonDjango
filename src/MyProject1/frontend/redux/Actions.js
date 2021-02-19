@@ -27,7 +27,7 @@ export const clothesCall=(aa)=>{
     }
 }
 export const addToCartAction=(val)=>{
-    // console.log("action cart",val,count)
+    console.log("action cart",val)
     return {
         type:"addtocart",
         payload: val,
@@ -70,8 +70,15 @@ export const fetchNone=()=>{
     }
 }
 export const logout=()=>{
-    return {
-        type: "logout"
+    return(dispatch)=> {
+        dispatch(logoutUser())
+        dispatch(clearCart());
+        
+    }
+}
+export const logoutUser=()=>{
+    return  {
+        type: "logout_user"
     }
 }
 export const login=(userData)=>{
@@ -79,5 +86,10 @@ export const login=(userData)=>{
     return {
         type: "login",
         payload : userData
+    }
+}
+export const clearCart=()=>{
+    return {
+        type: "clearcart"
     }
 }

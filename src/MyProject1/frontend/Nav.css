@@ -31,6 +31,11 @@
     font-weight: 500;
     
 }
+button#dropdown-basic {
+    position: fixed;
+    left: 88%;
+    top: 2%;
+}
 button#dropdown-basic span {
     font-weight: bold;
     font-size: 15px;

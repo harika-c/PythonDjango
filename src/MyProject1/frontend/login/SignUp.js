@@ -21,8 +21,6 @@ const SignUp =()=>{
 
     const submitFunct=(e)=>{
         e.preventDefault()
-        
-
         console.log('subfunc..',val)
         axios.post(SIGNUP_URL,val)
         .then(res=> {

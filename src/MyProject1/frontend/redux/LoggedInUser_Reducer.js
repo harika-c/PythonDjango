@@ -5,7 +5,7 @@ export const  LoggedInUser_Reducer=(state={},action)=>{
                 state: action.payload,
                 isLoggedIn : true
             }
-        case "logout":
+        case "logout_user":
             return {
                 state : undefined
             }

@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom"
 import {useDispatch} from 'react-redux';
-import {logout} from '../redux/Actions';
+import {clearCart, logout} from '../redux/Actions';
 
 const Logout=(props)=>{
     const dispatch = useDispatch()
