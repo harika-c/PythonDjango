@@ -6,7 +6,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import completedata from './completeDataSchema.js';
-import {loginDB,signupDB,womensWearDB, electronicdevicesDB , fruitsandvegiesDB,groceriesDB,homeutensilsDB, mensWearDB, kidsWearDB, accessoriesDB} from './categorywiseSchema.js';
+import {loginDB,signupDB,womensWearDB, electronicdevicesDB , fruitsandvegiesDB,groceriesDB,homeutensilsDB, mensWearDB, kidsWearDB, accessoriesDB, persistentCartLoggedInUserDB} from './categorywiseSchema.js';
 import bannersDB from './bannersSchema.js';
 
 
@@ -95,6 +95,27 @@ app.get('/mywebsite/:id',(req,res)=>{
     
 })
 //////////////////////////////////////////////////////////----POST---////////////////////////////////
+app.post('/mywebsite/cart',(req,res)=>{
+    const data =req.body
+    console.log('data.....',data);
+    persistentCartLoggedInUserDB.findOne({user_data : {state:{emailid:data.user_data.emailid}}},(err,existingUser)=>{
+        console.log('.....',existingUser,'...',existingUser=="")
+        if(existingUser==""){
+            persistentCartLoggedInUserDB.create(data,(err,newdata)=>{
+                console.log('/////////',data,'//////',newdata)
+                if(err){
+                    res.status(500).send(err);
+                }
+                else{
+                    res.status(201).send(newdata);
+                }
+            })
+        }else{
+            persistentCartLoggedInUserDB.findOneAndUpdate
+        }
+    })
+        
+})
 app.post('/mywebsite/signup',(req,res)=>{
     var data =req.body;
     // const id= crypto.randomBytes(16).toString("hex"); // user id code

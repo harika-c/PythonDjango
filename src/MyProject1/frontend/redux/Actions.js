@@ -1,6 +1,6 @@
 import axios from "axios";
-import { BACKEND_SERVER } from "../../Config";
-
+import { BACKEND_SERVER, BACKEND_CART_URL, CATEGORY_URL } from "../../Config";
+import store from '../Store';
 
 export const postCall=(aa)=>{
     return {
@@ -27,6 +27,27 @@ export const clothesCall=(aa)=>{
     }
 }
 export const addToCartAction=(val)=>{
+    return (dispatch)=>{
+        dispatch(addToCart(val));
+        dispatch(persistentCart());
+    }
+    
+}
+export const persistentCart=()=>{
+    console.log('persistent cart ,,',store.getState())
+    // axios cart call and push store .getstate().cartreducer & store.getState().loggedin_reducer
+    
+    var send_data= {
+        user_data : store.getState().loggedin_reducer,
+        cart_data : store.getState().cartreducer
+    }
+    return ()=>{
+        axios.post(BACKEND_CART_URL,send_data)
+        .then(res=>console.log('...>>>>>>>>>>>>>',res))
+        .catch(err=>console.log(err))
+    }
+}
+export const addToCart=(val)=>{
     console.log("action cart",val)
     return {
         type:"addtocart",
@@ -53,7 +74,7 @@ export const fetchApi=(data)=>{
 export const fetchData=(data)=>{
     return (dispatch)=>{
         console.log("actions ",data);
-        axios.get(BACKEND_SERVER+"mywebsite/clothes/"+data)
+        axios.get(CATEGORY_URL+data)
         .then(res=>{
             console.log(res.data,"axios res...");
             

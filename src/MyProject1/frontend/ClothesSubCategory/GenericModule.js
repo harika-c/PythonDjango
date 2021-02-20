@@ -22,6 +22,7 @@ const GenericModule=(props)=>{
         console.log("add to cart method to push an anction ",data )
         
         dispatch(addToCartAction(data))
+
         // console.log('....////............',!localStorage.getItem('ccart'))
          
         

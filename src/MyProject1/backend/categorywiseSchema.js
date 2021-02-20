@@ -17,6 +17,12 @@ const loginSchema=mongoose.Schema(
       password: String 
    }]
 )
+const persistentCartLoggedInUserSchema=mongoose.Schema(
+   [{
+      user_data : { state : { emailid: String}} ,
+      cart_data: []
+   }]
+)
 const womensWearSchema =mongoose.Schema(
    [{ name: String,
       about: String ,
@@ -79,6 +85,7 @@ const groceriesSchema=mongoose.Schema(
 
 export const signupDB=mongoose.model('signupDB',signupSchema);
 export const loginDB =mongoose.model('loginDB',loginSchema);
+export const persistentCartLoggedInUserDB =mongoose.model('persistentCartLoggedInUserDB',persistentCartLoggedInUserSchema);
 export const womensWearDB=  mongoose.model('womensWearDB',womensWearSchema);
 export const mensWearDB=mongoose.model('mensWearDB',mensWearSchema);
 export const kidsWearDB=mongoose.model('kidsWearDB',kidsWearSchema);
