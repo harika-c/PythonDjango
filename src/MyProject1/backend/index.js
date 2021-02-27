@@ -11,7 +11,6 @@ import bannersDB from './bannersSchema.js';
 
 
 
-
 const app=express();
 const connection_url ="mongodb+srv://myprojectown:L8MyTXRlLIvDGevC@cluster0.9qcp5.mongodb.net/flowers?retryWrites=true&w=majority"
 const port = process.env.PORT || 8001
@@ -111,7 +110,7 @@ app.post('/mywebsite/cart',(req,res)=>{
                 }
             })
         }else{
-            persistentCartLoggedInUserDB.findOneAndUpdate
+            // persistentCartLoggedInUserDB.findOneAndUpdate
         }
     })
         
@@ -298,7 +297,65 @@ app.delete('/mywebsite',(req,res)=>{
     .catch(err=>console.log(err))
     //  flowersandplants==(req.params.name)
 })
+app.delete('/mywebsite/banners/:id',(req,res)=>{
+    bannersDB.findByIdAndDelete(req.params.id)
+    .exec()
+    .then(doc=>{
+        console.log('....',doc)
+        if(!doc)
+            return res.status(404).end();
+        return res.status(204).end();
+    })
+})
 //////////////////////////////////////////////-----PUT------/////////////////////////////////////////
+app.put('/mywebsite/banners',(req,res)=>{
+    var updatedData="";
+    var headersAgain=false;
+    for(let i =0;i<req.body.length;i++){
+        console.log('headersAgain......',headersAgain)
+        
+        console.log('bulk data',req.body[i]._id,i)
+        bannersDB.findByIdAndUpdate(req.body[i]._id)
+        .then(val=>{
+            val.url=req.body[i].url
+            val.position=req.body[i].position
+            val.auto_scroll=req.body[i].auto_scroll
+            updatedData=val+updatedData
+            console.log('inside val.....',updatedData)
+            
+            val.save((err,updatedObject)=>{
+                console.log('inside save.....',updatedData)
+                if(err){
+                    return res.status(500).send(err)
+                }else{
+                    if(!headersAgain==true){
+                        headersAgain=true
+                        return res.status(201).send(updatedData)
+                    }
+                }
+            })
+        })
+    }
+    
+})
+app.put('/mywebsite/banners/:id',(req,res)=>{
+    console.log('banners params',req.params.id)
+    console.log('banners params',req.body,req.body.url)
+    bannersDB.findByIdAndUpdate(req.params.id)
+    .then(val=>{
+        val.url=req.body.url
+        val.position=req.body.position
+        val.auto_scroll =req.body.auto_scroll
+        console.log('.....',req.body.url,req.body.position)
+        val.save(function(err,updatedObject){
+            console.log(',,,',updatedObject)
+            if(err) 
+                return res.status(500).send(err)
+            return res.status(201).send(updatedObject)
+        })
+    })
+})
+
 app.put('/mywebsite/clothes/womenswear/:id',(req,res)=>{
     womensWearDB.findByIdAndUpdate(req.params.id)
     .then(val=>{console.log('............',val,'data......................')

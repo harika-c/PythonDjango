@@ -4,7 +4,8 @@ const bannersSchema=mongoose.Schema(
     [
         {
             url: String,
-            position: Number
+            position: Number,
+            auto_scroll: Boolean
         }
     ]
 
