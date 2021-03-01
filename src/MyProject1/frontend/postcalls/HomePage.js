@@ -48,7 +48,7 @@ const HomePage =({state,fetchApis})=>{
                     Object.keys(storedArr).length!=0 ? storedArr.map(singleObject=>{
                         
                         if(singleObject.auto_scroll==false){
-                            return <img src={singleObject.url} className="HomePage" keys={singleObject.uniqueId}  alt="Category_img" width="1000" height="400"></img> 
+                            return <img src={singleObject.url} className="Category" keys={singleObject.uniqueId}  alt="Category_img" width="500" height="300"></img> 
                         }
                           }): "No data"
                 }

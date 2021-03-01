@@ -10,5 +10,6 @@ img.HomePage{
     margin-block-end: 30px;
 }
 .Category{
-    padding: 4px;
+    padding: 10px;
+    margin-block-end: 10px;
 }
