@@ -3,6 +3,7 @@ import {connect,useDispatch} from 'react-redux';
 import {fetchApi,fetchNone} from '../redux/Actions';
 import AutoImageSliderForBanners from './AutoImageSliderForBanners';
 import './HomePage.css';
+import '../css/Slider.scss';
 
 const HomePage =({state,fetchApis})=>{
     const dispatch = useDispatch();
@@ -38,12 +39,13 @@ const HomePage =({state,fetchApis})=>{
         
         <div> 
             {console.log('home pahe state',state.state)}  
-            <div className="ecommerce_banner">
-                
-            </div>
             <div className="category_banners">
-                {console.log('......finalarray.....',trueBanners)}
-                <AutoImageSliderForBanners object={trueBanners}/>     
+                {/* {console.log('......finalarray.....',trueBanners)} */}
+                <div className="container mt-5 carousel">
+                    <div className="slider_title">
+                        <AutoImageSliderForBanners object={trueBanners}/>   
+                    </div>
+                </div>  
                 {
                     Object.keys(storedArr).length!=0 ? storedArr.map(singleObject=>{
                         

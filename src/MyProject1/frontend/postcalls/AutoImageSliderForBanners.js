@@ -1,36 +1,41 @@
-import AwesomeSliders from 'react-awesome-slider';
-import 'react-awesome-slider/dist/styles.css';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
+import './AutoImageSliderForBanners.css'
+import './HomePage.css';
 
 const AutoImageSliderForBanners=(props)=>{
-    
-    return(
+    let settings={
+        dot:true,
+        // inifite: true,
+        speed: 100,
+        slideToShow:3,
+        slidesToScroll:1,
+        cssEase: "linear",
+        autoplay: true
         
-        <div>
-            <div>
-                <head>
-  
-                <link rel="stylesheet" href="/path/to/flickity.css" media="screen"/>
-                </head>
-                <body>
+    }
+    return(
+        <Slider {...settings}>
+        
+                    {/* {console.log('AutomImagesSliderForBanner....',props.object)} */}
                 
-                <script src="/path/to/flickity.pkgd.min.js"></script>
-                </body>
-                </div>
-            {console.log('AutomImagesSliderForBanner....',props.object)}
-            
-            {
-                Object.keys(props.object).length!=0?  
-                <AwesomeSliders 
+                    {Object.keys(props.object).length!=0?  
+                            props.object.map(singleObject=>
                                 
-                                >
-                    {props.object.map(singleObject=><div data-src={singleObject.url} />
-                    )}
-                    
-                    </AwesomeSliders>
-                    :""
-            }
-        </div>
+                                    <div  className="card-wrapper">
+                                        <div className="card">
+                                            <div className="card-image">
+                                                <img src={singleObject.url} className="auto_rotate_images" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                               
+                            ):""}
+                   
+        </Slider>
     )
 }
 export default AutoImageSliderForBanners;

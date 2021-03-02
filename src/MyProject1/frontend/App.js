@@ -46,6 +46,13 @@ function App(){
                         <Route path='/favourites' component={Favourites}/>
                     </Switch>
                 </Router>
+                <div>
+                    <link rel='manifest' href="%PUBLIC_URL%/manifest.json"/>
+                    <link rel='manifest' href="%PUBLIC_URL%/styles/font.css"/>
+                    <link rel='manifest' href="%PUBLIC_URL%/styles/font-awesome.min.css"/>
+                    <link rel='manifest' href="%PUBLIC_URL%/styles/bootstrap-grid.css"/>
+                   
+                </div>
             </div>
     </Provider>
     )
