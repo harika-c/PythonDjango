@@ -7,15 +7,23 @@ input[type=text], input[type=number] ,input[type=search]{
     box-sizing: border-box;
   }
   
-  .submit_buttons {
-    background-color: #4CAF50;
-    color: white;
+  .submit_buttons{
+    
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
     width: 20%;
+    color: white;
   }
+  .submit_buttons:enabled {
+    background-color: #4CAF50;
+  }
+  .submit_buttons:disabled {
+    background-color: grey;
+    
+  }
+
   .btn  {
     width: 40px;
     background-color:white;

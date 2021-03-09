@@ -1,15 +1,12 @@
-import { useState } from "react";
-
 const TableData=(data)=>{
     
     const handleChange=(obj)=>{
-        data.editFunctionality(obj)
+        data.editFunctionality(obj);
     }
     return (
         <table>
             <tbody>
             <h2>Table Data</h2>
-            {console.log('inside table',data.data)}
             <tr>
                 <th>Name</th>
                 <th>Age</th>
