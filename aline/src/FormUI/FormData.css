@@ -1,0 +1,24 @@
+input[type=text], input[type=number] ,input[type=search]{
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .submit_buttons {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+  }
+  .btn  {
+    width: 40px;
+    background-color:white;
+    position: absolute;
+    margin-left: 2px;
+}
