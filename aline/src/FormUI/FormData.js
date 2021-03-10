@@ -21,15 +21,18 @@ const FormData=()=>{
     }
     const submitFunct=(e)=>{
         e.preventDefault();
-        setDisplay({buttonDisplay:false})
+        
         if(Object.keys(copy).length==0){
             setDisplay({disply:true});
             setCopy([...copy,{value:data}]);
         }
         const found=copy.find(function(key,index){
+            console.log(key.value.name,'......name',data.name,'ppp')
             return key.value.name==data.name;
         })
+        console.log('found...',found)
         if(!found){
+            console.log('found.inside..',found)
             setDisplay({disply:true});
             setCopy([...copy,{value:data}]);
         }
@@ -55,6 +58,7 @@ const FormData=()=>{
     const ButtonShouldBeEnabled=()=>{
         setDisplay({buttonDisplay:false});
     }
+    
     return(
         <div>
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
@@ -66,7 +70,7 @@ const FormData=()=>{
                 <input type="number" placeholder="Enter Age" onChange={(e)=>inputChange(e.target)} name="age" required /><br/>
                 <input type="text" placeholder="mm/dd/yyyy" onChange={(e)=>inputChange(e.target)} name="dob" required /><br/>
                 </div>
-                    
+                {console.log('....data',data,data.name!=="",display.buttonDisplay)}
                 <button className="submit_buttons" type="submit" disabled={typeof(data.name)!=="undefined" && typeof(data.age)!=="undefined"  && typeof(data.dob)!=="undefined" && data.name!=="" && data.dob!=="" && data.age!==""?()=> ButtonShouldBeEnabled():display.buttonDisplay}>Submit / Edit</button> <br/>  
                 
             </form>
